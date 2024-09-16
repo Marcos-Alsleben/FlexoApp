@@ -4,7 +4,10 @@
  */
 package flexoapp.form;
 
+import flexoapp.model.ProdutoCliche;
+import flexoapp.model.Utilitarios;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,13 +15,11 @@ import java.awt.Color;
  */
 public class NovoCliche extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NovoCliche
-     */
+//Metodos
     public NovoCliche() {
         initComponents();
         this.setResizable(false);
-        
+
     }
 
     /**
@@ -71,6 +72,11 @@ public class NovoCliche extends javax.swing.JFrame {
         }
 
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,14 +132,62 @@ public class NovoCliche extends javax.swing.JFrame {
 
     private void txt_facaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_facaFocusLost
 
-    if (txt_rp.getText().isEmpty()) {
-        txt_rp.setText("Relatório de Produção");
-        txt_rp.setForeground(Color.GRAY);
-    
-}
+        if (txt_rp.getText().isEmpty()) {
+            txt_rp.setText("Relatório de Produção");
+            txt_rp.setForeground(Color.GRAY);
+
+        }
 
 
     }//GEN-LAST:event_txt_facaFocusLost
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if ("".equals(txt_rp.getText())) {
+            JOptionPane.showMessageDialog(null, "RP Inválido!", "", 2);
+        } else {
+            if ("".equals(txt_faca.getText())) {
+                JOptionPane.showMessageDialog(null, "Faca Iválido!", "", 2);
+            } else {
+                if ("".equals(txt_ft.getText())) {
+                    JOptionPane.showMessageDialog(null, "FT Iválido!", "", 2);
+                } else {
+                    if ("".equals(cb_cliente.getSelectedItem().toString())) {
+                        JOptionPane.showMessageDialog(null, "Cliente Iválido!", "", 2);
+                    } else {
+                        if ("".equals(cb_tipocliche.getSelectedItem().toString())) {
+                            JOptionPane.showMessageDialog(null, "Tipo Clichê Iválido!", "", 2);
+                        } else {
+                            if ("".equals(cb_destino.getSelectedItem().toString())) {
+                                JOptionPane.showMessageDialog(null, "Destino Iválido!", "", 2);
+                            } else {
+
+                                Utilitarios dh = new Utilitarios();
+                                String dataHora = dh.DH();
+
+                                ProdutoCliche obj = new ProdutoCliche();
+
+                                obj.setRp_cliche(txt_rp.getText());
+                                obj.setFaca(txt_faca.getText());
+                                obj.setFt(txt_ft.getText());
+                                obj.setCliente_id(cb_clienteFaca.getSelectedItem().toString());
+                                obj.setTipoCliche_id(Integer.parseInt(txt_ftFaca.getText()));
+                                obj.setDestinoCliche_id(cb_setorFaca.getSelectedItem().toString());
+                                obj.setStatus("Ativo");
+                                obj.setCliche_criado(dataHora);
+                                obj.setCliche_modificado(dataHora);
+
+                                FilmeFacaDAO dao = new FilmeFacaDAO();
+                                dao.cadastrarFilmeFaca(obj);
+
+                                LimparFilmeFaca();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
