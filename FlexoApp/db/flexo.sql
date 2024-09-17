@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS `flexo`.`Cliente` (
   `criado` TIMESTAMP NOT NULL,
   `modificado` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -36,7 +37,8 @@ CREATE TABLE IF NOT EXISTS `flexo`.`TipoCliche` (
   `criado` TIMESTAMP NOT NULL,
   `modificado` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -49,7 +51,8 @@ CREATE TABLE IF NOT EXISTS `flexo`.`DestinoCliche` (
   `criado` TIMESTAMP NOT NULL,
   `modificado` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -58,15 +61,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `flexo`.`ProdutoCliche` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `rp_cliche` VARCHAR(45) NULL COMMENT 'relatorio de producao',
-  `faca` VARCHAR(45) NULL,
-  `ft` VARCHAR(45) NULL COMMENT 'ficha tecnica',
+  `rp_cliche` VARCHAR(45) NOT NULL COMMENT 'relatorio de producao',
+  `faca` VARCHAR(45) NOT NULL,
+  `ft` VARCHAR(45) NOT NULL COMMENT 'ficha tecnica',
   `Cliente_id` INT UNSIGNED NOT NULL,
   `TipoCliche_id` INT UNSIGNED NOT NULL,
   `DestinoCliche_id` INT UNSIGNED NOT NULL,
   `status` VARCHAR(45) NOT NULL COMMENT 'Ativo ou eliminado.',
-  `cliche_criado` TIMESTAMP NULL,
-  `cliche_modificado` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `cliche_criado` TIMESTAMP NOT NULL,
+  `cliche_modificado` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   INDEX `fk_ProdutoCliche_Cliente1_idx` (`Cliente_id` ASC) VISIBLE,
@@ -95,11 +98,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `flexo`.`TrabalhoProdutoCliche` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `rp_trabalho` VARCHAR(45) NULL COMMENT 'relatorio de producao',
+  `rp_trabalho` VARCHAR(45) NOT NULL COMMENT 'relatorio de producao',
   `condicao_uso` VARCHAR(45) NOT NULL,
   `ProdutoCliche_id` INT UNSIGNED NOT NULL,
-  `trabalho_criado` TIMESTAMP NULL,
-  `trabalho_modificado` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `trabalho_criado` TIMESTAMP NOT NULL,
+  `trabalho_modificado` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   INDEX `fk_TrabalhoProdutoCliche_ProdutoCliche1_idx` (`ProdutoCliche_id` ASC) VISIBLE,

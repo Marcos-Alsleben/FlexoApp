@@ -170,7 +170,7 @@ public class NovoCliche extends javax.swing.JFrame {
                                 obj.setRp_cliche(txt_rp.getText());
                                 obj.setFaca(txt_faca.getText());
                                 obj.setFt(txt_ft.getText());
-                                obj.setCliente_id(cb_clienteFaca.getSelectedItem().toString());
+                                /*obj.setCliente_id(cb_clienteFaca.getSelectedItem().toString());
                                 obj.setTipoCliche_id(Integer.parseInt(txt_ftFaca.getText()));
                                 obj.setDestinoCliche_id(cb_setorFaca.getSelectedItem().toString());
                                 obj.setStatus("Ativo");
@@ -180,7 +180,7 @@ public class NovoCliche extends javax.swing.JFrame {
                                 FilmeFacaDAO dao = new FilmeFacaDAO();
                                 dao.cadastrarFilmeFaca(obj);
 
-                                LimparFilmeFaca();
+                                LimparFilmeFaca();*/
                             }
                         }
                     }

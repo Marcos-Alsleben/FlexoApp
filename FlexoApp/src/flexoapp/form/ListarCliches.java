@@ -57,6 +57,7 @@ public class ListarCliches extends javax.swing.JPanel {
         jl_totalCliche = new javax.swing.JLabel();
         btn_novoCliche = new javax.swing.JButton();
         txt_pesquisaCliche = new javax.swing.JTextField();
+        jl_totalCliche1 = new javax.swing.JLabel();
 
         jt_cliches.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,7 +91,8 @@ public class ListarCliches extends javax.swing.JPanel {
             jt_cliches.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        jl_totalCliche.setText("Total: 10000");
+        jl_totalCliche.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jl_totalCliche.setText("Clichês");
 
         btn_novoCliche.setText("Novo Clichê");
         btn_novoCliche.setFocusable(false);
@@ -102,18 +104,23 @@ public class ListarCliches extends javax.swing.JPanel {
 
         txt_pesquisaCliche.setToolTipText("Busca");
 
+        jl_totalCliche1.setText("Total: 10000");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jl_totalCliche, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(txt_pesquisaCliche, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_novoCliche)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txt_pesquisaCliche, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_novoCliche))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jl_totalCliche1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jl_totalCliche, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -123,9 +130,11 @@ public class ListarCliches extends javax.swing.JPanel {
                     .addComponent(btn_novoCliche)
                     .addComponent(txt_pesquisaCliche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jl_totalCliche))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(357, 357, 357)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_totalCliche)
+                    .addComponent(jl_totalCliche1)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,6 +153,7 @@ public class ListarCliches extends javax.swing.JPanel {
     private javax.swing.JButton btn_novoCliche;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jl_totalCliche;
+    private javax.swing.JLabel jl_totalCliche1;
     private javax.swing.JTable jt_cliches;
     private javax.swing.JTextField txt_pesquisaCliche;
     // End of variables declaration//GEN-END:variables

@@ -119,9 +119,9 @@ public class ClienteDAO {
                 Cliente obj = new Cliente();
 
                 obj.setId(rs.getInt("id"));
-                obj.setNome(rs.getString("nome"));
-                obj.setCriado(rs.getString("criado"));
-                obj.setModificado(rs.getString("modificado"));
+                obj.setNome(rs.getString("Nome"));
+                obj.setCriado(rs.getString("Criado"));
+                obj.setModificado(rs.getString("Modificado"));
 
                 lista.add(obj);
 
