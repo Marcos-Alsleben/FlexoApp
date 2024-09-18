@@ -1,4 +1,3 @@
-
 package flexoapp.dao;
 
 import flexoapp.jdbc.ConnectionFactory;
@@ -17,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class DestinoClicheDAO {
 
-private Connection con;
+    private Connection con;
 
     public DestinoClicheDAO() {
         this.con = new ConnectionFactory().getConnection();
@@ -136,5 +135,40 @@ private Connection con;
         }
 
     }
-    
+
+//Metodo ResgatarId
+    public List<DestinoCliche> ResgatarId(String nome) {
+
+        try {
+
+            // Passo 1 criar a lista
+            List<DestinoCliche> lista = new ArrayList<>();
+
+            // Passo 2 criar o comando sql, organizar e executar
+            String sql = "select * from destinocliche Where nome = " + nome;
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                DestinoCliche obj = new DestinoCliche();
+
+                obj.setId(rs.getInt("id"));
+                obj.setNome(rs.getString("Nome"));
+                obj.setCriado(rs.getString("Criado"));
+                obj.setModificado(rs.getString("Modificado"));
+
+                lista.add(obj);
+
+            }
+            con.close();
+            return lista;
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro:" + erro);
+            return null;
+        }
+
+    }
+
 }

@@ -6,6 +6,7 @@ package flexoapp.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,10 +14,10 @@ import java.util.Date;
  */
 public class Utilitarios {
 
-// Metodo Pegar Data e Hora (dd/mm/yyyy hh:mm)
+// Metodo Pegar Data e Hora
     public String DH() {
         Date data = new Date();
-        SimpleDateFormat formatar = new SimpleDateFormat();
+        SimpleDateFormat formatar = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dataFormatada = formatar.format(data);
         
         //JOptionPane.showMessageDialog(null, dataFormatada);

@@ -4,9 +4,16 @@
  */
 package flexoapp.form;
 
+import flexoapp.dao.ClienteDAO;
+import flexoapp.dao.DestinoClicheDAO;
+import flexoapp.dao.TipoClicheDAO;
+import flexoapp.model.Cliente;
+import flexoapp.model.DestinoCliche;
 import flexoapp.model.ProdutoCliche;
+import flexoapp.model.TipoCliche;
 import flexoapp.model.Utilitarios;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,10 +22,107 @@ import javax.swing.JOptionPane;
  */
 public class NovoCliche extends javax.swing.JFrame {
 
-//Metodos
+//Metodo Atualiza campos de textos
+    public void setTextField() {
+
+        Utilitarios dh = new Utilitarios();
+        String dataHora = dh.DH();
+
+        txt_data.setText(dataHora);
+        txt_data.setEnabled(false);
+        txt_rp.setText("");
+        txt_faca.setText("");
+        txt_ft.setText("");
+
+    }
+
+//Metodo Atualiza cb_cliente
+    public void AtualizarcbClientes() {
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> lista = dao.listarCliente();
+
+        cb_cliente.removeAllItems();
+        cb_cliente.addItem("");
+
+        for (Cliente c : lista) {
+            cb_cliente.addItem(c.getNome());
+
+        }
+    }
+
+//Metodo Atualiza cb_tipoCliche
+    public void AtualizarcbTipoCliche() {
+        TipoClicheDAO dao = new TipoClicheDAO();
+        List<TipoCliche> lista = dao.listarTipoCliche();
+
+        cb_tipocliche.removeAllItems();
+        cb_tipocliche.addItem("");
+
+        for (TipoCliche c : lista) {
+            cb_tipocliche.addItem(c.getNome());
+
+        }
+    }
+
+//Metodo Atualiza cb_tipoCliche
+    public void AtualizarcbDestino() {
+        DestinoClicheDAO dao = new DestinoClicheDAO();
+        List<DestinoCliche> lista = dao.listarDestinoCliche();
+
+        cb_destino.removeAllItems();
+        cb_destino.addItem("");
+
+        for (DestinoCliche c : lista) {
+            cb_destino.addItem(c.getNome());
+
+        }
+    }
+
+//Metodo Aponta idCliente
+    public String ApontaIdCliente() {
+        String id = null;
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> lista = dao.ResgatarId(cb_cliente.getSelectedItem().toString());
+
+        for (Cliente c : lista) {
+            id = c.getNome();
+
+        }
+        return id;
+    }
+
+//Metodo Aponta idCliente
+    public String ApontaIdDestinoCliche() {
+        String id = null;
+        DestinoClicheDAO dao = new DestinoClicheDAO();
+        List<DestinoCliche> lista = dao.ResgatarId(cb_destino.getSelectedItem().toString());
+
+        for (DestinoCliche c : lista) {
+            id = c.getNome();
+
+        }
+        return id;
+    }
+
+//Metodo Aponta idCliente
+    public String ApontaIdTipoCliche() {
+        String id = null;
+        TipoClicheDAO dao = new TipoClicheDAO();
+        List<TipoCliche> lista = dao.ResgatarId(cb_tipocliche.getSelectedItem().toString());
+
+        for (TipoCliche c : lista) {
+            id = c.getNome();
+
+        }
+        return id;
+    }
+
     public NovoCliche() {
         initComponents();
         this.setResizable(false);
+        AtualizarcbClientes();
+        AtualizarcbTipoCliche();
+        AtualizarcbDestino();
 
     }
 
@@ -34,42 +138,46 @@ public class NovoCliche extends javax.swing.JFrame {
         txt_rp = new javax.swing.JTextField();
         txt_faca = new javax.swing.JTextField();
         txt_ft = new javax.swing.JTextField();
-        cb_cliente = new javax.swing.JComboBox<>();
         cb_tipocliche = new javax.swing.JComboBox<>();
         cb_destino = new javax.swing.JComboBox<>();
-        txt_status = new javax.swing.JTextField();
-        txt_data = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jC_data = new javax.swing.JCheckBox();
+        txt_data = new javax.swing.JTextField();
+        cb_cliente = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Clichê");
         setMaximumSize(new java.awt.Dimension(250, 374));
         setMinimumSize(new java.awt.Dimension(250, 374));
 
-        txt_rp.setText("RP");
+        txt_rp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_rpKeyTyped(evt);
+            }
+        });
 
-        txt_faca.setText("FACA");
         txt_faca.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_facaFocusLost(evt);
             }
         });
+        txt_faca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_facaKeyTyped(evt);
+            }
+        });
 
-        txt_ft.setText("FT");
-
-        cb_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente" }));
-
-        cb_tipocliche.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo Cliche" }));
-
-        cb_destino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Destino" }));
-
-        txt_status.setText("Status");
-
-        try {
-            txt_data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txt_ft.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_ftKeyTyped(evt);
+            }
+        });
 
         jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,66 +186,103 @@ public class NovoCliche extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel1.setText(" RP");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel2.setText(" FACA");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel3.setText(" FT");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel4.setText(" CLIENTE");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel5.setText(" TIPO CLICHÊ");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel6.setText(" DESTINO");
+
+        jC_data.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jC_dataActionPerformed(evt);
+            }
+        });
+
+        txt_data.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txt_rp)
-                        .addComponent(txt_faca, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txt_ft)
-                        .addComponent(cb_cliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cb_tipocliche, 0, 238, Short.MAX_VALUE)
-                        .addComponent(cb_destino, 0, 238, Short.MAX_VALUE)
-                        .addComponent(txt_status)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_rp, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(cb_destino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cb_tipocliche, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_ft, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txt_faca)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(txt_data)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(jButton1)
-                            .addGap(0, 0, Short.MAX_VALUE)))
-                    .addContainerGap()))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jC_data))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cb_cliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(txt_rp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(txt_faca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(txt_ft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(cb_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(cb_tipocliche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(cb_destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(txt_status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(txt_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton1)
-                    .addContainerGap(16, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 0, 0)
+                .addComponent(txt_rp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(0, 0, 0)
+                .addComponent(txt_faca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(0, 0, 0)
+                .addComponent(txt_ft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(0, 0, 0)
+                .addComponent(cb_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addGap(0, 0, 0)
+                .addComponent(cb_tipocliche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addGap(0, 0, 0)
+                .addComponent(cb_destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jC_data)
+                    .addComponent(txt_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_facaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_facaFocusLost
-
-        if (txt_rp.getText().isEmpty()) {
-            txt_rp.setText("Relatório de Produção");
-            txt_rp.setForeground(Color.GRAY);
-
-        }
-
 
     }//GEN-LAST:event_txt_facaFocusLost
 
@@ -189,6 +334,56 @@ public class NovoCliche extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jC_dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_dataActionPerformed
+
+        txt_data.setEnabled(jC_data.isSelected());
+
+    }//GEN-LAST:event_jC_dataActionPerformed
+
+    private void txt_rpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_rpKeyTyped
+
+        String caracteres = "0987654321.";
+        if (evt.getKeyChar() == ',') {
+            evt.setKeyChar('.');
+        } else if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+
+
+    }//GEN-LAST:event_txt_rpKeyTyped
+
+    private void txt_ftKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ftKeyTyped
+
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321.-";
+        char keyChar = evt.getKeyChar();
+
+        if (keyChar == ',') {
+            evt.setKeyChar('.');
+        } else if (Character.isLetter(keyChar)) {
+            keyChar = Character.toUpperCase(keyChar);
+            evt.setKeyChar(keyChar);
+        } else if (!caracteres.contains(Character.toUpperCase(keyChar) + "")) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txt_ftKeyTyped
+
+    private void txt_facaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_facaKeyTyped
+
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321";
+        char keyChar = evt.getKeyChar();
+
+        if (keyChar == ',') {
+            evt.setKeyChar('.');
+        } else if (Character.isLetter(keyChar)) {
+            keyChar = Character.toUpperCase(keyChar);
+            evt.setKeyChar(keyChar);
+        } else if (!caracteres.contains(Character.toUpperCase(keyChar) + "")) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txt_facaKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -229,10 +424,16 @@ public class NovoCliche extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_destino;
     private javax.swing.JComboBox<String> cb_tipocliche;
     private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField txt_data;
+    private javax.swing.JCheckBox jC_data;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txt_data;
     private javax.swing.JTextField txt_faca;
     private javax.swing.JTextField txt_ft;
     private javax.swing.JTextField txt_rp;
-    private javax.swing.JTextField txt_status;
     // End of variables declaration//GEN-END:variables
 }

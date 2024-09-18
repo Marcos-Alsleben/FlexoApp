@@ -54,11 +54,13 @@ public class ListarCliches extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_cliches = new javax.swing.JTable();
-        jl_totalCliche = new javax.swing.JLabel();
         btn_novoCliche = new javax.swing.JButton();
-        txt_pesquisaCliche = new javax.swing.JTextField();
-        jl_totalCliche1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txt_pesquisa = new javax.swing.JTextField();
 
+        setPreferredSize(new java.awt.Dimension(650, 577));
+
+        jt_cliches.setAutoCreateRowSorter(true);
         jt_cliches.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -91,10 +93,7 @@ public class ListarCliches extends javax.swing.JPanel {
             jt_cliches.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        jl_totalCliche.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jl_totalCliche.setText("Clichês");
-
-        btn_novoCliche.setText("Novo Clichê");
+        btn_novoCliche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flexoapp/img/Adicionar_32px.png"))); // NOI18N
         btn_novoCliche.setFocusable(false);
         btn_novoCliche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,39 +101,34 @@ public class ListarCliches extends javax.swing.JPanel {
             }
         });
 
-        txt_pesquisaCliche.setToolTipText("Busca");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flexoapp/img/Pesquisar_16px.png"))); // NOI18N
 
-        jl_totalCliche1.setText("Total: 10000");
+        txt_pesquisa.setToolTipText("Pesquisar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txt_pesquisaCliche, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_novoCliche))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jl_totalCliche1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jl_totalCliche, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
+                .addComponent(btn_novoCliche))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_novoCliche)
-                    .addComponent(txt_pesquisaCliche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(357, 357, 357)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_totalCliche)
-                    .addComponent(jl_totalCliche1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel1)
+                            .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,17 +138,25 @@ public class ListarCliches extends javax.swing.JPanel {
             nc = new NovoCliche();
             nc.setLocationRelativeTo(this);
             nc.setVisible(true);
+            nc.setTextField();
+            nc.AtualizarcbClientes();
+            nc.AtualizarcbTipoCliche();
+            nc.AtualizarcbDestino();
+
         }
         nc.setVisible(true);
+        nc.setTextField();
+        nc.AtualizarcbClientes();
+        nc.AtualizarcbTipoCliche();
+        nc.AtualizarcbDestino();
     }//GEN-LAST:event_btn_novoClicheActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_novoCliche;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel jl_totalCliche;
-    private javax.swing.JLabel jl_totalCliche1;
     private javax.swing.JTable jt_cliches;
-    private javax.swing.JTextField txt_pesquisaCliche;
+    private javax.swing.JTextField txt_pesquisa;
     // End of variables declaration//GEN-END:variables
 }
