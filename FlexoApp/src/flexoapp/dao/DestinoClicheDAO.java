@@ -137,38 +137,39 @@ public class DestinoClicheDAO {
     }
 
 //Metodo ResgatarId
-    public List<DestinoCliche> ResgatarId(String nome) {
-
+    public List<DestinoCliche> RetornaId(String nome){
+        
         try {
-
-            // Passo 1 criar a lista
+            //Cria a Lista
             List<DestinoCliche> lista = new ArrayList<>();
-
-            // Passo 2 criar o comando sql, organizar e executar
-            String sql = "select * from destinocliche Where nome = " + nome;
+            
+            //Cria comando sql
+            String sql = "SELECT * FROM destinocliche where "
+                    + "nome =? order by criado asc limit 1;";
+            
+            //Conecta ao banco de dados e organiza o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);                      
             ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-
+            
+            while (rs.next()){
+                                       
                 DestinoCliche obj = new DestinoCliche();
-
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("Nome"));
                 obj.setCriado(rs.getString("Criado"));
                 obj.setModificado(rs.getString("Modificado"));
-
+                                
+                //Executa
                 lista.add(obj);
-
+                
             }
             con.close();
             return lista;
-
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro:" + erro);
             return null;
         }
-
     }
 
 }

@@ -137,38 +137,39 @@ private Connection con;
     }
 
 //Metodo ResgatarId
-    public List<TipoCliche> ResgatarId(String nome) {
-
+    public List<TipoCliche> RetornaId(String nome){
+        
         try {
-
-            // Passo 1 criar a lista
+            //Cria a Lista
             List<TipoCliche> lista = new ArrayList<>();
-
-            // Passo 2 criar o comando sql, organizar e executar
-            String sql = "select * from tipocliche Where nome = "+nome;
+            
+            //Cria comando sql
+            String sql = "SELECT * FROM tipocliche where "
+                    + "nome =? order by criado asc limit 1;";
+            
+            //Conecta ao banco de dados e organiza o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);                      
             ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-
+            
+            while (rs.next()){
+                                       
                 TipoCliche obj = new TipoCliche();
-
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("Nome"));
                 obj.setCriado(rs.getString("Criado"));
                 obj.setModificado(rs.getString("Modificado"));
-
+                                
+                //Executa
                 lista.add(obj);
-
+                
             }
             con.close();
             return lista;
-
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro:" + erro);
             return null;
         }
-
     }
     
 }

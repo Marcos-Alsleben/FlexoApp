@@ -6,6 +6,8 @@ package flexoapp.form;
 
 import flexoapp.dao.ProdutoClicheDAO;
 import flexoapp.model.ProdutoCliche;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,12 +18,13 @@ import javax.swing.table.DefaultTableModel;
 public class ListarCliches extends javax.swing.JPanel {
 
     private NovoCliche nc;
+    private AlterarCliche ac;
 
 //Metodo listar FilmeFaca
     public void listarCliche() {
         ProdutoClicheDAO dao = new ProdutoClicheDAO();
         List<ProdutoCliche> lista = dao.ProdutoCliche();
-        DefaultTableModel dados = (DefaultTableModel) jt_cliches.getModel();
+        DefaultTableModel dados = (DefaultTableModel) jT_cliches.getModel();
         dados.setNumRows(0);
         for (ProdutoCliche c : lista) {
             dados.addRow(new Object[]{
@@ -41,6 +44,7 @@ public class ListarCliches extends javax.swing.JPanel {
 
     public ListarCliches() {
         initComponents();
+
     }
 
     /**
@@ -53,15 +57,16 @@ public class ListarCliches extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jt_cliches = new javax.swing.JTable();
+        jT_cliches = new javax.swing.JTable();
         btn_novoCliche = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txt_pesquisa = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(650, 577));
 
-        jt_cliches.setAutoCreateRowSorter(true);
-        jt_cliches.setModel(new javax.swing.table.DefaultTableModel(
+        jT_cliches.setAutoCreateRowSorter(true);
+        jT_cliches.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -87,10 +92,15 @@ public class ListarCliches extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jt_cliches.setFocusable(false);
-        jScrollPane1.setViewportView(jt_cliches);
-        if (jt_cliches.getColumnModel().getColumnCount() > 0) {
-            jt_cliches.getColumnModel().getColumn(0).setMaxWidth(50);
+        jT_cliches.setFocusable(false);
+        jT_cliches.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jT_clichesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jT_cliches);
+        if (jT_cliches.getColumnModel().getColumnCount() > 0) {
+            jT_cliches.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
         btn_novoCliche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flexoapp/img/Adicionar_32px.png"))); // NOI18N
@@ -105,6 +115,10 @@ public class ListarCliches extends javax.swing.JPanel {
 
         txt_pesquisa.setToolTipText("Pesquisar");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("CLICHÊS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,9 +127,11 @@ public class ListarCliches extends javax.swing.JPanel {
                 .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_novoCliche))
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,9 +142,10 @@ public class ListarCliches extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel1)
-                            .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -151,12 +168,47 @@ public class ListarCliches extends javax.swing.JPanel {
         nc.AtualizarcbDestino();
     }//GEN-LAST:event_btn_novoClicheActionPerformed
 
+    private void jT_clichesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jT_clichesMouseClicked
+
+        jT_cliches.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+
+                    if (ac == null) {
+                        ac = new AlterarCliche();
+                        ac.pack();
+
+                        int x = jT_cliches.getLocationOnScreen().x + (jT_cliches.getWidth() - ac.getWidth()) / 2;
+                        int y = jT_cliches.getLocationOnScreen().y + (jT_cliches.getHeight() - ac.getHeight()) / 2;
+
+                        ac.setLocation(x, y);
+
+                        ac.setVisible(true);
+                        //ac.setTextField();
+                        //ac.AtualizarcbClientes();
+                        //ac.AtualizarcbTipoCliche();
+                        //ac.AtualizarcbDestino();
+
+                    }
+                    ac.setVisible(true);
+                    //ac.setTextField();
+                    //ac.AtualizarcbClientes();
+                    //ac.AtualizarcbTipoCliche();
+                    //ac.AtualizarcbDestino();
+
+                }
+            }
+        });
+
+    }//GEN-LAST:event_jT_clichesMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_novoCliche;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jt_cliches;
+    private javax.swing.JTable jT_cliches;
     private javax.swing.JTextField txt_pesquisa;
     // End of variables declaration//GEN-END:variables
 }

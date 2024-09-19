@@ -138,37 +138,38 @@ public class ClienteDAO {
 
 
 //Metodo ResgatarId
-    public List<Cliente> ResgatarId(String nome) {
-
+    public List<Cliente> RetornaId(String nome){
+        
         try {
-
-            // Passo 1 criar a lista
+            //Cria a Lista
             List<Cliente> lista = new ArrayList<>();
-
-            // Passo 2 criar o comando sql, organizar e executar
-            String sql = "select * from cliente Where nome = "+nome;
+            
+            //Cria comando sql
+            String sql = "SELECT * FROM cliente where "
+                    + "nome =? order by criado asc limit 1;";
+            
+            //Conecta ao banco de dados e organiza o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, nome);                      
             ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-
+            
+            while (rs.next()){
+                                       
                 Cliente obj = new Cliente();
-
                 obj.setId(rs.getInt("id"));
                 obj.setNome(rs.getString("Nome"));
                 obj.setCriado(rs.getString("Criado"));
                 obj.setModificado(rs.getString("Modificado"));
-
+                                
+                //Executa
                 lista.add(obj);
-
+                
             }
             con.close();
             return lista;
-
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro:" + erro);
             return null;
         }
-
     }
 }

@@ -27,7 +27,7 @@ public class ProdutoClicheDAO {
         try {
 
             //1 passo  - criar o comando sql
-            String sql = "insert into produtocliche (rp_cliente, faca, ft, Cliente_id, TipoCliche_id, DestinoCliche_id,"
+            String sql = "insert into produtocliche (rp_cliche, faca, ft, Cliente_id, TipoCliche_id, DestinoCliche_id,"
                     + "status, cliche_criado, cliche_modificado) values (?,?,?,?,?,?,?,?,?)";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
@@ -125,7 +125,7 @@ public class ProdutoClicheDAO {
             List<ProdutoCliche> lista = new ArrayList<>();
 
             // Passo 2 criar o comando sql, organizar e executar
-            String sql = "select * from produtocliente order by abs(rp_cliche) asc";
+            String sql = "select * from produtocliche order by abs(rp_cliche) asc";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 

@@ -19,10 +19,12 @@ public class Principal extends javax.swing.JFrame {
         cl.show(jP_CardLayout, card);
     }
 
+
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
         //this.setExtendedState(this.MAXIMIZED_BOTH);
+
     }
 
     /**
@@ -191,7 +193,7 @@ public class Principal extends javax.swing.JFrame {
         jP_ListarClicheLayout.setVerticalGroup(
             jP_ListarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_ListarClicheLayout.createSequentialGroup()
-                .addComponent(listarCliches1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, Short.MAX_VALUE)
+                .addComponent(listarCliches1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -401,10 +403,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowActivated
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         MostraCardLayout("ListarCliche");
@@ -467,6 +465,12 @@ public class Principal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+
+       listarCliches1.listarCliche();
+
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
