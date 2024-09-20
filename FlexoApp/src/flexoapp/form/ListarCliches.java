@@ -127,8 +127,8 @@ public class ListarCliches extends javax.swing.JPanel {
                 .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_novoCliche))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
@@ -176,10 +176,10 @@ public class ListarCliches extends javax.swing.JPanel {
 
                     if (ac == null) {
                         ac = new AlterarCliche();
-                        ac.pack();
 
                         int x = jT_cliches.getLocationOnScreen().x + (jT_cliches.getWidth() - ac.getWidth()) / 2;
-                        int y = jT_cliches.getLocationOnScreen().y + (jT_cliches.getHeight() - ac.getHeight()) / 2;
+                       // int y = jT_cliches.getLocationOnScreen().y + (jT_cliches.getHeight() - ac.getHeight()) / 2;
+                        int y = jT_cliches.getLocation().y + (ac.getHeight()/2);
 
                         ac.setLocation(x, y);
 

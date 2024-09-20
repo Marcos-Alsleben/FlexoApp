@@ -48,6 +48,7 @@ public class AlterarCliche extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Aterar/Excluir Clichê");
 
         jButton1.setText("Salvar");
 
@@ -113,6 +114,8 @@ public class AlterarCliche extends javax.swing.JFrame {
                 jC_dataActionPerformed(evt);
             }
         });
+
+        cb_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATIVADO", "ELIMINADO" }));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel7.setText("STATUS");
