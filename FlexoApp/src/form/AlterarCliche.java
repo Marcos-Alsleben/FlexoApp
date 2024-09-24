@@ -4,7 +4,15 @@
  */
 package form;
 
+import dao.ClienteDAO;
+import dao.DestinoClicheDAO;
+import dao.TipoClicheDAO;
 import java.awt.Toolkit;
+import java.util.List;
+import javax.swing.JOptionPane;
+import model.Cliente;
+import model.DestinoCliche;
+import model.TipoCliche;
 
 /**
  *
@@ -12,9 +20,154 @@ import java.awt.Toolkit;
  */
 public class AlterarCliche extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AterarCliche
-     */
+    //Metodo Atualiza ID
+    public void AtualizarId(String lc) {
+
+        txt_idCliche.setText(lc);
+
+    }
+
+//Metodo Atualiza RP
+    public void AtualizarRp(String lc) {
+
+        txt_rp.setText(lc);
+
+    }
+
+//Metodo Atualiza Faca
+    public void AtualizarFaca(String lc) {
+
+        txt_faca.setText(lc);
+
+    }
+
+//Metodo Atualiza FT
+    public void AtualizarFt(String lc) {
+
+        txt_ft.setText(lc);
+
+    }
+
+//Metodo Atualiza Cliente
+    public void AtualizarCliente(String lc) {
+
+        cb_cliente.setSelectedItem(lc);
+
+    }
+
+//Metodo Atualiza TipoCliche
+    public void AtualizarTipoCliche(String lc) {
+
+        cb_tipocliche.setSelectedItem(lc);
+
+    }
+
+
+//Metodo Atualiza Destino
+    public void AtualizarDestino(String lc) {
+
+        cb_destino.setSelectedItem(lc);
+
+    }
+
+//Metodo Atualiza Status
+    public void AtualizarStatus(String lc) {
+
+        cb_status.setSelectedItem(lc);
+
+    }
+
+//Metodo Atualiza data
+    public void AtualizarData(String lc) {
+
+        txt_data.setText(lc);
+
+    }
+
+//Metodo Atualiza cb_cliente
+    public void AtualizarcbClientes() {
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> lista = dao.listarCliente();
+
+        cb_cliente.removeAllItems();
+        cb_cliente.addItem("");
+
+        for (Cliente c : lista) {
+            cb_cliente.addItem(c.getNome());
+
+        }
+    }
+
+//Metodo Atualiza cb_tipoCliche
+    public void AtualizarcbTipoCliche() {
+        TipoClicheDAO dao = new TipoClicheDAO();
+        List<TipoCliche> lista = dao.listarTipoCliche();
+
+        cb_tipocliche.removeAllItems();
+        cb_tipocliche.addItem("");
+
+        for (TipoCliche c : lista) {
+            cb_tipocliche.addItem(c.getNome());
+
+        }
+    }
+
+//Metodo Atualiza cb_tipoCliche
+    public void AtualizarcbDestino() {
+        DestinoClicheDAO dao = new DestinoClicheDAO();
+        List<DestinoCliche> lista = dao.listarDestinoCliche();
+
+        cb_destino.removeAllItems();
+        cb_destino.addItem("");
+
+        for (DestinoCliche c : lista) {
+            cb_destino.addItem(c.getNome());
+
+        }
+    }
+
+//Metodo Aponta id Cliente
+    public int ApontaIdCliente() {
+        int id = 0;
+
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> lista = dao.RetornaId(cb_cliente.getSelectedItem().toString());
+
+        for (Cliente c : lista) {
+            id = c.getId();
+
+        }
+        return id;
+    }
+
+    //Metodo Aponta  id DestinoCliche
+    public int ApontaIdDestinoCliente() {
+        int id = 0;
+
+        DestinoClicheDAO dao = new DestinoClicheDAO();
+        List<DestinoCliche> lista = dao.RetornaId(cb_destino.getSelectedItem().toString());
+
+        for (DestinoCliche c : lista) {
+            id = c.getId();
+
+        }
+        return id;
+    }
+
+//Metodo Aponta  id TipoCliche
+    public int ApontaIdTipoCliche() {
+        int id = 0;
+
+        TipoClicheDAO dao = new TipoClicheDAO();
+        List<TipoCliche> lista = dao.RetornaId(cb_tipocliche.getSelectedItem().toString());
+
+        for (TipoCliche c : lista) {
+            id = c.getId();
+
+        }
+        return id;
+    }
+
     public AlterarCliche() {
         initComponents();
         setIconImage();
@@ -81,11 +234,6 @@ public class AlterarCliche extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel2.setText(" FACA");
 
-        txt_faca.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_facaFocusLost(evt);
-            }
-        });
         txt_faca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_facaKeyTyped(evt);
@@ -111,6 +259,7 @@ public class AlterarCliche extends javax.swing.JFrame {
         jLabel6.setText(" DESTINO");
 
         txt_data.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_data.setEnabled(false);
 
         jC_data.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +267,7 @@ public class AlterarCliche extends javax.swing.JFrame {
             }
         });
 
-        cb_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATIVADO", "ELIMINADO" }));
+        cb_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATIVO", "ELIMINADO" }));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel7.setText("STATUS");
@@ -221,18 +370,12 @@ public class AlterarCliche extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txt_rpKeyTyped
 
-    private void txt_facaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_facaFocusLost
-
-    }//GEN-LAST:event_txt_facaFocusLost
-
     private void txt_facaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_facaKeyTyped
 
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321";
         char keyChar = evt.getKeyChar();
 
-        if (keyChar == ',') {
-            evt.setKeyChar('.');
-        } else if (Character.isLetter(keyChar)) {
+        if (Character.isLetter(keyChar)) {
             keyChar = Character.toUpperCase(keyChar);
             evt.setKeyChar(keyChar);
         } else if (!caracteres.contains(Character.toUpperCase(keyChar) + "")) {
@@ -295,7 +438,8 @@ public class AlterarCliche extends javax.swing.JFrame {
             }
         });
     }
-private void setIconImage() {
+
+    private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Alterar_32px.png")));
     }
 

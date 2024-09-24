@@ -108,7 +108,7 @@ public class NovoCliche extends javax.swing.JFrame {
         return id;
     }
 
-//Metodo Aponta idCliente
+//Metodo Aponta  id TipoCliche
     public int ApontaIdTipoCliche() {
         int id = 0;
 
@@ -312,6 +312,9 @@ public class NovoCliche extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(null, "Destino Iválido!", "", 2);
                             } else {
 
+                                Utilitarios dh = new Utilitarios();
+                                String dataHora = dh.DH();
+
                                 int idcliente = ApontaIdCliente();
                                 int idtipocliche = ApontaIdTipoCliche();
                                 int iddestinocliche = ApontaIdDestinoCliente();
@@ -326,7 +329,7 @@ public class NovoCliche extends javax.swing.JFrame {
                                 obj.setDestinoCliche_id(iddestinocliche);
                                 obj.setStatus("ATIVO");
                                 obj.setCliche_criado(txt_data.getText());
-                                obj.setCliche_modificado(txt_data.getText());
+                                obj.setCliche_modificado(dataHora);
 
                                 ProdutoClicheDAO dao = new ProdutoClicheDAO();
                                 dao.cadastrarProdutoCliche(obj);
@@ -381,9 +384,7 @@ public class NovoCliche extends javax.swing.JFrame {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321";
         char keyChar = evt.getKeyChar();
 
-        if (keyChar == ',') {
-            evt.setKeyChar('.');
-        } else if (Character.isLetter(keyChar)) {
+        if (Character.isLetter(keyChar)) {
             keyChar = Character.toUpperCase(keyChar);
             evt.setKeyChar(keyChar);
         } else if (!caracteres.contains(Character.toUpperCase(keyChar) + "")) {

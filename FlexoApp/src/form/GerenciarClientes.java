@@ -176,6 +176,9 @@ public class GerenciarClientes extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_nomeClienteKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nomeClienteKeyTyped(evt);
+            }
         });
 
         txt_idCliente.setBackground(new java.awt.Color(255, 255, 255, 0));
@@ -354,6 +357,21 @@ public class GerenciarClientes extends javax.swing.JFrame {
         });
 
     }//GEN-LAST:event_jT_clienteMouseClicked
+
+    private void txt_nomeClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeClienteKeyTyped
+      
+
+String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321-_";
+        char keyChar = evt.getKeyChar();
+
+         if (Character.isLetter(keyChar)) {
+            keyChar = Character.toUpperCase(keyChar);
+            evt.setKeyChar(keyChar);
+        } else if (!caracteres.contains(Character.toUpperCase(keyChar) + "")) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txt_nomeClienteKeyTyped
 
     /**
      * @param args the command line arguments
