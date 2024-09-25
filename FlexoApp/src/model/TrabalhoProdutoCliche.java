@@ -14,6 +14,12 @@ public class TrabalhoProdutoCliche {
     private String trabalho_modificado;
     private int ProdutoCliche_id;
 
+    private String rp_Cliche;
+    private String id_Cliche;
+    private String faca;
+    private String destinocliche;
+    private String tipocliche;
+
 //Getter e Setter
 
     public int getId() {
@@ -63,6 +69,48 @@ public class TrabalhoProdutoCliche {
     public void setProdutoCliche_id(int ProdutoCliche_id) {
         this.ProdutoCliche_id = ProdutoCliche_id;
     }
+
+    public String getRp_Cliche() {
+        return rp_Cliche;
+    }
+
+    public void setRp_Cliche(String rp_Cliche) {
+        this.rp_Cliche = rp_Cliche;
+    }
+
+    public String getId_Cliche() {
+        return id_Cliche;
+    }
+
+    public void setId_Cliche(String id_Cliche) {
+        this.id_Cliche = id_Cliche;
+    }
+
+    public String getFaca() {
+        return faca;
+    }
+
+    public void setFaca(String faca) {
+        this.faca = faca;
+    }
+
+    public String getDestinocliche() {
+        return destinocliche;
+    }
+
+    public void setDestinocliche(String destinocliche) {
+        this.destinocliche = destinocliche;
+    }
+
+    public String getTipocliche() {
+        return tipocliche;
+    }
+
+    public void setTipocliche(String tipocliche) {
+        this.tipocliche = tipocliche;
+    }
+
     
 
+    
 }

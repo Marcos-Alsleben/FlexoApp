@@ -52,7 +52,7 @@ public class Principal extends javax.swing.JFrame {
         jP_ListarCliche = new javax.swing.JPanel();
         listarCliches1 = new form.ListarCliches();
         jP_ListarTrabalhos = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        listarTrabalhos1 = new form.ListarTrabalhos();
         jP_4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jP_5 = new javax.swing.JPanel();
@@ -70,7 +70,6 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FlexoApp");
         setMinimumSize(new java.awt.Dimension(1200, 650));
-        setPreferredSize(new java.awt.Dimension(1200, 650));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -193,32 +192,21 @@ public class Principal extends javax.swing.JFrame {
         );
         jP_ListarClicheLayout.setVerticalGroup(
             jP_ListarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_ListarClicheLayout.createSequentialGroup()
-                .addComponent(listarCliches1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(listarCliches1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
         );
 
         jP_CardLayout.add(jP_ListarCliche, "ListarCliche");
         jP_ListarCliche.getAccessibleContext().setAccessibleName("ListarCliche");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("3");
-
         javax.swing.GroupLayout jP_ListarTrabalhosLayout = new javax.swing.GroupLayout(jP_ListarTrabalhos);
         jP_ListarTrabalhos.setLayout(jP_ListarTrabalhosLayout);
         jP_ListarTrabalhosLayout.setHorizontalGroup(
             jP_ListarTrabalhosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_ListarTrabalhosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(listarTrabalhos1, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
         );
         jP_ListarTrabalhosLayout.setVerticalGroup(
             jP_ListarTrabalhosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_ListarTrabalhosLayout.createSequentialGroup()
-                .addContainerGap(265, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap(298, Short.MAX_VALUE))
+            .addComponent(listarTrabalhos1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
         );
 
         jP_CardLayout.add(jP_ListarTrabalhos, "ListarTrabalhos");
@@ -470,6 +458,7 @@ public class Principal extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
 
         listarCliches1.PesquisarCliche();
+        listarTrabalhos1.PesquisarTrabalhos();
 
     }//GEN-LAST:event_formWindowActivated
 
@@ -502,7 +491,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -522,5 +510,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private form.ListarCliches listarCliches1;
+    private form.ListarTrabalhos listarTrabalhos1;
     // End of variables declaration//GEN-END:variables
 }

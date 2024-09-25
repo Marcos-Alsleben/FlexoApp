@@ -61,8 +61,8 @@ public class ProdutoClicheDAO {
         try {
 
             //1 passo  - criar o comando sql
-            String sql = "update produtocliente set rp_cliente, faca, ft, Cliente_id, TipoCliche_id, DestinoCliche_id,"
-                    + "status, cliche_criado, cliche_modificado where id=? ";
+            String sql = "update produtocliche set rp_cliche=?, faca=?, ft=?, Cliente_id=?, TipoCliche_id=?, DestinoCliche_id=?,"
+                    + "status=?, cliche_criado=?, cliche_modificado=? where id=? ";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class ProdutoClicheDAO {
         try {
 
             //1 passo  - criar o comando sql
-            String sql = "delete from produtocliente where id=?";
+            String sql = "delete from produtocliche where id=?";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -235,6 +235,52 @@ public class ProdutoClicheDAO {
             return null;
         }
 
+    }
+
+//Metodo ResgatarId
+    public List<ProdutoCliche> RetornaId(String rp) {
+
+        try {
+            //Cria a Lista
+            List<ProdutoCliche> lista = new ArrayList<>();
+
+            //Cria comando sql
+            String sql = "SELECT * FROM flexo.produtocliche\n"
+                    + "WHERE rp_cliche = ?\n"
+                    + "order by cliche_criado asc limit 1;";
+
+            //Conecta ao banco de dados e organiza o comando sql
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, rp);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                ProdutoCliche obj = new ProdutoCliche();
+                obj.setId(rs.getInt("id"));
+                obj.setRp_cliche(rs.getString("rp_cliche"));
+                obj.setFaca(rs.getString("faca"));
+                obj.setFt(rs.getString("ft"));
+                obj.setCliente_id(rs.getInt("Cliente_id"));
+                obj.setCliente(rs.getString("cliente"));
+                obj.setTipoCliche_id(rs.getInt("TipoCliche_id"));
+                obj.setTipocliche(rs.getString("Tipocliche"));
+                obj.setDestinoCliche_id(rs.getInt("DestinoCliche_id"));
+                obj.setDestinocliche(rs.getString("Destinocliche"));
+                obj.setStatus(rs.getString("status"));
+                obj.setCliche_criado(rs.getString("cliche_criado"));
+                obj.setCliche_modificado(rs.getString("cliche_modificado"));
+
+                //Executa
+                lista.add(obj);
+
+            }
+            con.close();
+            return lista;
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro:" + erro);
+            return null;
+        }
     }
 
 }

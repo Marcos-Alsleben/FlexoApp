@@ -103,7 +103,7 @@ public class ListarCliches extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "RP Cliche", "Faca", "FT", "Cliente_id", "Cliente", "TipoCliche_id", "Tipo Cliche", "Destino_id", "Destino", "Status", "Criado", "Modificado"
+                "id", "RP Cliche", "Faca", "FT", "Cliente_id", "Cliente", "TipoCliche_id", "Tipo Clichê", "Destino_id", "Destino", "Status", "Criado", "Modificado"
             }
         ) {
             Class[] types = new Class [] {

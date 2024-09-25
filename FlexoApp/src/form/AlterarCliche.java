@@ -6,19 +6,37 @@ package form;
 
 import dao.ClienteDAO;
 import dao.DestinoClicheDAO;
+import dao.ProdutoClicheDAO;
 import dao.TipoClicheDAO;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.DestinoCliche;
+import model.ProdutoCliche;
 import model.TipoCliche;
+import model.Utilitarios;
 
 /**
  *
  * @author gmg
  */
 public class AlterarCliche extends javax.swing.JFrame {
+
+//Metodo Limpar Campos
+    public void LimparCampos() {
+
+        txt_rp.setText("");
+        txt_faca.setText("");
+        txt_ft.setText("");
+        cb_cliente.setSelectedIndex(0);
+        cb_tipocliche.setSelectedIndex(0);
+        cb_destino.setSelectedIndex(0);
+        cb_status.setSelectedIndex(0);
+        txt_data.setText("");
+        txt_idCliche.setText("");
+
+    }
 
     //Metodo Atualiza ID
     public void AtualizarId(String lc) {
@@ -61,7 +79,6 @@ public class AlterarCliche extends javax.swing.JFrame {
         cb_tipocliche.setSelectedItem(lc);
 
     }
-
 
 //Metodo Atualiza Destino
     public void AtualizarDestino(String lc) {
@@ -207,8 +224,18 @@ public class AlterarCliche extends javax.swing.JFrame {
         setTitle("Aterar ou Excluir Clichê");
 
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Excluir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         txt_idCliche.setBackground(new java.awt.Color(255, 255, 255, 0));
         txt_idCliche.setForeground(new java.awt.Color(63, 63, 63));
@@ -402,6 +429,91 @@ public class AlterarCliche extends javax.swing.JFrame {
 
         txt_data.setEnabled(jC_data.isSelected());
     }//GEN-LAST:event_jC_dataActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        String rp = txt_rp.getText();
+        int resposta = JOptionPane.showConfirmDialog(null, "Excluir RP " + rp + "?", "", JOptionPane.YES_NO_OPTION);
+
+        if (resposta == 0) {
+            ProdutoCliche obj = new ProdutoCliche();
+
+            obj.setId(Integer.parseInt(txt_idCliche.getText()));
+
+            ProdutoClicheDAO dao = new ProdutoClicheDAO();
+
+            dao.excluirProdutoCliche(obj);
+
+            LimparCampos();
+            this.dispose();
+
+        }
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if ("".equals(txt_rp.getText())) {
+            JOptionPane.showMessageDialog(null, "RP Inválido!", "", 2);
+        } else {
+            if ("".equals(txt_faca.getText())) {
+                JOptionPane.showMessageDialog(null, "Faca Iválido!", "", 2);
+            } else {
+                if ("".equals(txt_ft.getText())) {
+                    JOptionPane.showMessageDialog(null, "FT Iválido!", "", 2);
+                } else {
+                    if ("".equals(cb_cliente.getSelectedItem().toString())) {
+                        JOptionPane.showMessageDialog(null, "Cliente Iválido!", "", 2);
+                    } else {
+                        if ("".equals(cb_tipocliche.getSelectedItem().toString())) {
+                            JOptionPane.showMessageDialog(null, "Tipo Clichê Iválido!", "", 2);
+                        } else {
+                            if ("".equals(cb_destino.getSelectedItem().toString())) {
+                                JOptionPane.showMessageDialog(null, "Destino Iválido!", "", 2);
+                            } else {
+                                if ("".equals(cb_status.getSelectedItem().toString())) {
+                                    JOptionPane.showMessageDialog(null, "Status Iválido!", "", 2);
+                                } else {
+                                    if ("".equals(txt_data.getText())) {
+                                        JOptionPane.showMessageDialog(null, "Data Inválido!", "", 2);
+                                    } else {
+
+                                        Utilitarios dh = new Utilitarios();
+                                        String dataHora = dh.DH();
+
+                                        int idcliente = ApontaIdCliente();
+                                        int idtipocliche = ApontaIdTipoCliche();
+                                        int iddestinocliche = ApontaIdDestinoCliente();
+
+                                        ProdutoCliche obj = new ProdutoCliche();
+
+                                        obj.setRp_cliche(txt_rp.getText());
+                                        obj.setFaca(txt_faca.getText());
+                                        obj.setFt(txt_ft.getText());
+                                        obj.setCliente_id(idcliente);
+                                        obj.setTipoCliche_id(idtipocliche);
+                                        obj.setDestinoCliche_id(iddestinocliche);
+                                        obj.setStatus(cb_status.getSelectedItem().toString());
+                                        obj.setCliche_criado(txt_data.getText());
+                                        obj.setCliche_modificado(dataHora);
+                                        obj.setId(Integer.parseInt(txt_idCliche.getText()));
+
+                                        ProdutoClicheDAO dao = new ProdutoClicheDAO();
+                                        dao.alterarProdutoCliche(obj);
+
+                                        LimparCampos();
+                                        this.dispose();
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
