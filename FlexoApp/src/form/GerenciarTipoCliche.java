@@ -138,6 +138,9 @@ public class GerenciarTipoCliche extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_nomeTipoClicheKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nomeTipoClicheKeyTyped(evt);
+            }
         });
 
         txt_idTipoCliche.setBackground(new java.awt.Color(255, 255, 255, 0));
@@ -356,6 +359,20 @@ public class GerenciarTipoCliche extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         listarTipoCliche();
     }//GEN-LAST:event_formWindowActivated
+
+    private void txt_nomeTipoClicheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeTipoClicheKeyTyped
+        
+ String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321";
+        char keyChar = evt.getKeyChar();
+
+        if (Character.isLetter(keyChar)) {
+            keyChar = Character.toUpperCase(keyChar);
+            evt.setKeyChar(keyChar);
+        } else if (!caracteres.contains(Character.toUpperCase(keyChar) + "")) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txt_nomeTipoClicheKeyTyped
 
     /**
      * @param args the command line arguments

@@ -87,6 +87,9 @@ public class GerenciarDestinoCliche extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_nomeDestinoClicheKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nomeDestinoClicheKeyTyped(evt);
+            }
         });
 
         btn_novoDestinoCliche.setBackground(new java.awt.Color(22, 22, 22));
@@ -356,6 +359,20 @@ public class GerenciarDestinoCliche extends javax.swing.JFrame {
         listarDestinoCliche();
 
     }//GEN-LAST:event_formWindowActivated
+
+    private void txt_nomeDestinoClicheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeDestinoClicheKeyTyped
+  
+ String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321";
+        char keyChar = evt.getKeyChar();
+
+        if (Character.isLetter(keyChar)) {
+            keyChar = Character.toUpperCase(keyChar);
+            evt.setKeyChar(keyChar);
+        } else if (!caracteres.contains(Character.toUpperCase(keyChar) + "")) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txt_nomeDestinoClicheKeyTyped
 
     /**
      * @param args the command line arguments
