@@ -43,7 +43,6 @@ public class Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -53,19 +52,10 @@ public class Principal extends javax.swing.JFrame {
         listarCliches1 = new form.ListarCliches();
         jP_ListarTrabalhos = new javax.swing.JPanel();
         listarTrabalhos1 = new form.ListarTrabalhos();
-        jP_4 = new javax.swing.JPanel();
+        jP_infoGeral = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jP_5 = new javax.swing.JPanel();
+        jP_EliminarCliche = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jP_6 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jP_GerenciarClientes = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jP_8 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jP_9 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FlexoApp");
@@ -102,16 +92,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jButton4.setText("Clichês Ativos");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        jButton5.setText("Clichês Eliminados");
+        jButton5.setText("Eliminar Clichês");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -152,7 +134,6 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,9 +149,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(35, 35, 35)
                 .addComponent(jButton3)
-                .addGap(35, 35, 35)
-                .addComponent(jButton4)
-                .addGap(35, 35, 35)
+                .addGap(40, 40, 40)
                 .addComponent(jButton5)
                 .addGap(35, 35, 35)
                 .addComponent(jButton6)
@@ -178,7 +157,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton7)
                 .addGap(35, 35, 35)
                 .addComponent(jButton8)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jP_CardLayout.setBackground(new java.awt.Color(255, 0, 204));
@@ -188,7 +167,7 @@ public class Principal extends javax.swing.JFrame {
         jP_ListarCliche.setLayout(jP_ListarClicheLayout);
         jP_ListarClicheLayout.setHorizontalGroup(
             jP_ListarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listarCliches1, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
+            .addComponent(listarCliches1, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
         );
         jP_ListarClicheLayout.setVerticalGroup(
             jP_ListarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +181,7 @@ public class Principal extends javax.swing.JFrame {
         jP_ListarTrabalhos.setLayout(jP_ListarTrabalhosLayout);
         jP_ListarTrabalhosLayout.setHorizontalGroup(
             jP_ListarTrabalhosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listarTrabalhos1, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
+            .addComponent(listarTrabalhos1, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
         );
         jP_ListarTrabalhosLayout.setVerticalGroup(
             jP_ListarTrabalhosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,155 +192,50 @@ public class Principal extends javax.swing.JFrame {
         jP_ListarTrabalhos.getAccessibleContext().setAccessibleName("ListarTrabalhos");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setText("4");
+        jLabel4.setText("Informação Geral");
 
-        javax.swing.GroupLayout jP_4Layout = new javax.swing.GroupLayout(jP_4);
-        jP_4.setLayout(jP_4Layout);
-        jP_4Layout.setHorizontalGroup(
-            jP_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout jP_infoGeralLayout = new javax.swing.GroupLayout(jP_infoGeral);
+        jP_infoGeral.setLayout(jP_infoGeralLayout);
+        jP_infoGeralLayout.setHorizontalGroup(
+            jP_infoGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_infoGeralLayout.createSequentialGroup()
+                .addContainerGap(415, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(390, Short.MAX_VALUE))
         );
-        jP_4Layout.setVerticalGroup(
-            jP_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_4Layout.createSequentialGroup()
-                .addContainerGap(261, Short.MAX_VALUE)
+        jP_infoGeralLayout.setVerticalGroup(
+            jP_infoGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_infoGeralLayout.createSequentialGroup()
+                .addContainerGap(238, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
-        jP_CardLayout.add(jP_4, "card4");
-        jP_4.getAccessibleContext().setAccessibleName("card4");
+        jP_CardLayout.add(jP_infoGeral, "infoGeral");
+        jP_infoGeral.getAccessibleContext().setAccessibleName("infoGeral");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("5");
+        jLabel5.setText("Eliminar Clichês");
 
-        javax.swing.GroupLayout jP_5Layout = new javax.swing.GroupLayout(jP_5);
-        jP_5.setLayout(jP_5Layout);
-        jP_5Layout.setHorizontalGroup(
-            jP_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout jP_EliminarClicheLayout = new javax.swing.GroupLayout(jP_EliminarCliche);
+        jP_EliminarCliche.setLayout(jP_EliminarClicheLayout);
+        jP_EliminarClicheLayout.setHorizontalGroup(
+            jP_EliminarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_EliminarClicheLayout.createSequentialGroup()
+                .addContainerGap(415, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(417, Short.MAX_VALUE))
         );
-        jP_5Layout.setVerticalGroup(
-            jP_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_5Layout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
+        jP_EliminarClicheLayout.setVerticalGroup(
+            jP_EliminarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_EliminarClicheLayout.createSequentialGroup()
+                .addContainerGap(238, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
-        jP_CardLayout.add(jP_5, "card5");
-        jP_5.getAccessibleContext().setAccessibleName("card5");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setText("6");
-
-        javax.swing.GroupLayout jP_6Layout = new javax.swing.GroupLayout(jP_6);
-        jP_6.setLayout(jP_6Layout);
-        jP_6Layout.setHorizontalGroup(
-            jP_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jP_6Layout.setVerticalGroup(
-            jP_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_6Layout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addContainerGap(301, Short.MAX_VALUE))
-        );
-
-        jP_CardLayout.add(jP_6, "card6");
-        jP_6.getAccessibleContext().setAccessibleName("card6");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel7.setText("7");
-
-        javax.swing.GroupLayout jP_GerenciarClientesLayout = new javax.swing.GroupLayout(jP_GerenciarClientes);
-        jP_GerenciarClientes.setLayout(jP_GerenciarClientesLayout);
-        jP_GerenciarClientesLayout.setHorizontalGroup(
-            jP_GerenciarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_GerenciarClientesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jP_GerenciarClientesLayout.setVerticalGroup(
-            jP_GerenciarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_GerenciarClientesLayout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addContainerGap(301, Short.MAX_VALUE))
-        );
-
-        jP_CardLayout.add(jP_GerenciarClientes, "GerenciarClientes");
-        jP_GerenciarClientes.getAccessibleContext().setAccessibleName("GerenciarClientes");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel8.setText("8");
-
-        javax.swing.GroupLayout jP_8Layout = new javax.swing.GroupLayout(jP_8);
-        jP_8.setLayout(jP_8Layout);
-        jP_8Layout.setHorizontalGroup(
-            jP_8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jP_8Layout.setVerticalGroup(
-            jP_8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_8Layout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addContainerGap(301, Short.MAX_VALUE))
-        );
-
-        jP_CardLayout.add(jP_8, "card8");
-        jP_8.getAccessibleContext().setAccessibleName("card8");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel9.setText("9");
-
-        javax.swing.GroupLayout jP_9Layout = new javax.swing.GroupLayout(jP_9);
-        jP_9.setLayout(jP_9Layout);
-        jP_9Layout.setHorizontalGroup(
-            jP_9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jP_9Layout.setVerticalGroup(
-            jP_9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_9Layout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addContainerGap(301, Short.MAX_VALUE))
-        );
-
-        jP_CardLayout.add(jP_9, "card9");
-        jP_9.getAccessibleContext().setAccessibleName("card9");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 998, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
-        );
-
-        jP_CardLayout.add(jPanel2, "card2");
+        jP_CardLayout.add(jP_EliminarCliche, "EliminarCliche");
+        jP_EliminarCliche.getAccessibleContext().setAccessibleName("EliminarCliche");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -406,18 +280,12 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        MostraCardLayout("card4");
+        MostraCardLayout("infoGeral");
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        MostraCardLayout("card5");
-
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-        MostraCardLayout("card6");
+        MostraCardLayout("EliminarCliche");
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -478,14 +346,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Adicionar_32px.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_64px.png")));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -493,21 +360,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jP_4;
-    private javax.swing.JPanel jP_5;
-    private javax.swing.JPanel jP_6;
-    private javax.swing.JPanel jP_8;
-    private javax.swing.JPanel jP_9;
     private javax.swing.JPanel jP_CardLayout;
-    private javax.swing.JPanel jP_GerenciarClientes;
+    private javax.swing.JPanel jP_EliminarCliche;
     private javax.swing.JPanel jP_ListarCliche;
     private javax.swing.JPanel jP_ListarTrabalhos;
+    private javax.swing.JPanel jP_infoGeral;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private form.ListarCliches listarCliches1;
     private form.ListarTrabalhos listarTrabalhos1;

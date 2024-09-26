@@ -57,15 +57,15 @@ public class TrabalhoProdutoClicheDAO {
         try {
 
             //1 passo  - criar o comando sql
-            String sql = "update trabalhoprodutocliente set rp_trabalho, condicao_uso, trabalho_criado, trabalho_modificado, ProdutoCliche_id where id=? ";
+            String sql = "update trabalhoprodutocliche set rp_trabalho=?, condicao_uso=?, ProdutoCliche_id=?, trabalho_criado=?, trabalho_modificado=? where id=? ";
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, obj.getRp_trabalho());
             stmt.setString(2, obj.getCondicao_uso());
-            stmt.setString(3, obj.getTrabalho_criado());
-            stmt.setString(4, obj.getTrabalho_modificado());
-            stmt.setInt(5, obj.getProdutoCliche_id());
+            stmt.setInt(3, obj.getProdutoCliche_id());
+            stmt.setString(4, obj.getTrabalho_criado());
+            stmt.setString(5, obj.getTrabalho_modificado());
             stmt.setInt(6, obj.getId());
 
             //3 passo - executar o comando sql

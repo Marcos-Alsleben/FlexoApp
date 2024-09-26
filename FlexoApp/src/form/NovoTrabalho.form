@@ -99,7 +99,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="10" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Condi&#xe7;&#xe3;o de Uso"/>
+        <Property name="text" type="java.lang.String" value=" Condi&#xe7;&#xe3;o de Uso"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cb_condicaouso">
@@ -260,7 +260,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="RP do Clich&#xea;"/>
+            <Property name="text" type="java.lang.String" value=" RP do Clich&#xea;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -268,7 +268,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="id do Clich&#xea;"/>
+            <Property name="text" type="java.lang.String" value=" id do Clich&#xea;"/>
           </Properties>
         </Component>
       </SubComponents>

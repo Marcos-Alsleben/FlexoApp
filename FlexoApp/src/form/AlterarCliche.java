@@ -295,9 +295,10 @@ public class AlterarCliche extends javax.swing.JFrame {
         });
 
         cb_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATIVO", "ELIMINADO" }));
+        cb_status.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel7.setText("STATUS");
+        jLabel7.setText(" STATUS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

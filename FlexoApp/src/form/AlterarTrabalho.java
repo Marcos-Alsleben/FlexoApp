@@ -156,7 +156,7 @@ public class AlterarTrabalho extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel4.setText("Condição de Uso");
+        jLabel4.setText(" Condição de Uso");
 
         cb_condicaouso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "REUTILIZADO", "NOVO" }));
 
@@ -221,10 +221,10 @@ public class AlterarTrabalho extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Pesquisar_16px.png"))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel5.setText("RP do Clichê");
+        jLabel5.setText(" RP do Clichê");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel6.setText("id do Clichê");
+        jLabel6.setText(" id do Clichê");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -363,9 +363,10 @@ public class AlterarTrabalho extends javax.swing.JFrame {
                     obj.setProdutoCliche_id(Integer.parseInt(txt_idcliche.getText()));
                     obj.setTrabalho_criado(txt_data.getText());
                     obj.setTrabalho_modificado(dataHora);
+                    obj.setId(Integer.parseInt(txt_id.getText()));
 
                     TrabalhoProdutoClicheDAO dao = new TrabalhoProdutoClicheDAO();
-                    dao.cadastrarTrabalhoProdutoCliche(obj);
+                    dao.alterarTrabalhoProdutoCliche(obj);
 
                     setTextField();
                     this.dispose();
