@@ -129,6 +129,7 @@ public class ListarCliches extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jT_cliches.setToolTipText("Duplo clicke no registro para alterá-lo!");
         jT_cliches.setFocusable(false);
         jT_cliches.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -152,6 +153,7 @@ public class ListarCliches extends javax.swing.JPanel {
         }
 
         btn_novoCliche.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Adicionar_32px.png"))); // NOI18N
+        btn_novoCliche.setToolTipText("Cadastrar Novo");
         btn_novoCliche.setFocusable(false);
         btn_novoCliche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +175,7 @@ public class ListarCliches extends javax.swing.JPanel {
         jLabel2.setText("CLICHÊS");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf_32px.png"))); // NOI18N
+        jButton1.setToolTipText("Gerar PDF");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -187,12 +190,13 @@ public class ListarCliches extends javax.swing.JPanel {
                 .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_novoCliche))
+                .addGap(18, 18, 18)
+                .addComponent(btn_novoCliche)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -206,7 +210,7 @@ public class ListarCliches extends javax.swing.JPanel {
                     .addComponent(jButton1)
                     .addComponent(btn_novoCliche))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -23,6 +23,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -92,5 +94,16 @@ public class Utilitarios {
             }
         }
     }
+
+// Método para abrir pasta
+    public void abrirPasta(String caminhoPasta) {
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            desktop.open(new File(caminhoPasta));
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao abrir a pasta: " + e.getMessage());
+        }
+    }
+
 
 }

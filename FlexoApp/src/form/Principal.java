@@ -145,19 +145,19 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jButton1)
-                .addGap(35, 35, 35)
+                .addGap(25, 25, 25)
                 .addComponent(jButton2)
-                .addGap(35, 35, 35)
+                .addGap(25, 25, 25)
                 .addComponent(jButton3)
-                .addGap(40, 40, 40)
+                .addGap(25, 25, 25)
                 .addComponent(jButton5)
-                .addGap(35, 35, 35)
+                .addGap(60, 60, 60)
                 .addComponent(jButton6)
-                .addGap(35, 35, 35)
+                .addGap(25, 25, 25)
                 .addComponent(jButton7)
-                .addGap(35, 35, 35)
+                .addGap(25, 25, 25)
                 .addComponent(jButton8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jP_CardLayout.setBackground(new java.awt.Color(255, 0, 204));
@@ -171,7 +171,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jP_ListarClicheLayout.setVerticalGroup(
             jP_ListarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listarCliches1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+            .addComponent(listarCliches1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
         );
 
         jP_CardLayout.add(jP_ListarCliche, "ListarCliche");
@@ -185,7 +185,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jP_ListarTrabalhosLayout.setVerticalGroup(
             jP_ListarTrabalhosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listarTrabalhos1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+            .addComponent(listarTrabalhos1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
         );
 
         jP_CardLayout.add(jP_ListarTrabalhos, "ListarTrabalhos");
@@ -206,9 +206,9 @@ public class Principal extends javax.swing.JFrame {
         jP_infoGeralLayout.setVerticalGroup(
             jP_infoGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_infoGeralLayout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
+                .addContainerGap(197, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
 
         jP_CardLayout.add(jP_infoGeral, "infoGeral");
@@ -229,9 +229,9 @@ public class Principal extends javax.swing.JFrame {
         jP_EliminarClicheLayout.setVerticalGroup(
             jP_EliminarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_EliminarClicheLayout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
+                .addContainerGap(197, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
 
         jP_CardLayout.add(jP_EliminarCliche, "EliminarCliche");

@@ -25,15 +25,15 @@ import model.Utilitarios;
  * @author gmg
  */
 public class ListarTrabalhos extends javax.swing.JPanel {
-
+    
     private NovoTrabalho nt;
     private AlterarTrabalho at;
 
 //Metodo Pesquisar Trabalhos
     public void PesquisarTrabalhos() {
-
+        
         String pesquisa = "%" + txt_pesquisa.getText() + "%";
-
+        
         TrabalhoProdutoClicheDAO dao = new TrabalhoProdutoClicheDAO();
         List<TrabalhoProdutoCliche> lista = dao.pesquisarTrabalhoProdutoCliche(pesquisa);
         DefaultTableModel dados = (DefaultTableModel) jT_trabalhos.getModel();
@@ -51,11 +51,11 @@ public class ListarTrabalhos extends javax.swing.JPanel {
                 c.getTrabalho_criado(),
                 c.getTrabalho_modificado()
             });
-
+            
         }
-
+        
     }
-
+    
     public ListarTrabalhos() {
         initComponents();
     }
@@ -76,6 +76,7 @@ public class ListarTrabalhos extends javax.swing.JPanel {
         txt_pesquisa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jT_trabalhos.setAutoCreateRowSorter(true);
         jT_trabalhos.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,6 +105,7 @@ public class ListarTrabalhos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jT_trabalhos.setToolTipText("Duplo clicke no registro para alterá-lo!");
         jT_trabalhos.setFocusable(false);
         jT_trabalhos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,6 +123,7 @@ public class ListarTrabalhos extends javax.swing.JPanel {
         }
 
         btn_novoTrabalho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Adicionar_32px.png"))); // NOI18N
+        btn_novoTrabalho.setToolTipText("Cadastrar Novo");
         btn_novoTrabalho.setFocusable(false);
         btn_novoTrabalho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,9 +145,18 @@ public class ListarTrabalhos extends javax.swing.JPanel {
         jLabel2.setText("TRABALHOS");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf_32px.png"))); // NOI18N
+        jButton1.setToolTipText("Gerar PDF");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pasta_32px.png"))); // NOI18N
+        jButton2.setToolTipText("Abrir Controle Clichês");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -156,12 +168,15 @@ public class ListarTrabalhos extends javax.swing.JPanel {
                 .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_novoTrabalho))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_novoTrabalho)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -173,21 +188,22 @@ public class ListarTrabalhos extends javax.swing.JPanel {
                     .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jButton1)
-                    .addComponent(btn_novoTrabalho))
+                    .addComponent(btn_novoTrabalho)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_novoTrabalhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoTrabalhoActionPerformed
-
+        
         if (nt == null) {
             nt = new NovoTrabalho();
             nt.setLocationRelativeTo(this);
             nt.setVisible(true);
             nt.setTextField();
             nt.PesquisarProdutoCliche();
-
+            
         }
         nt.setVisible(true);
         nt.setTextField();
@@ -196,25 +212,25 @@ public class ListarTrabalhos extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_novoTrabalhoActionPerformed
 
     private void txt_pesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisaKeyReleased
-
+        
         PesquisarTrabalhos();
 
     }//GEN-LAST:event_txt_pesquisaKeyReleased
 
     private void jT_trabalhosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jT_trabalhosMouseClicked
-
+        
         jT_trabalhos.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-
+                    
                     if (at == null) {
                         at = new AlterarTrabalho();
-
+                        
                         int x = jT_trabalhos.getLocationOnScreen().x + (jT_trabalhos.getWidth() - at.getWidth()) / 2;
                         int y = jT_trabalhos.getLocation().y + (at.getHeight() / 2);
-
+                        
                         at.setLocation(x, y);
-
+                        
                         at.AtualizarId(jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 0).toString());
                         at.AtualizarRptrabalho(jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 1).toString());
                         at.AtualizarIdCliche((jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 5).toString()));
@@ -223,7 +239,7 @@ public class ListarTrabalhos extends javax.swing.JPanel {
                         at.AtualizarData((jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 8).toString()));
                         at.PesquisarProdutoCliche();
                         at.setVisible(true);
-
+                        
                     }
                     at.AtualizarId(jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 0).toString());
                     at.AtualizarRptrabalho(jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 1).toString());
@@ -233,10 +249,10 @@ public class ListarTrabalhos extends javax.swing.JPanel {
                     at.AtualizarData((jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 8).toString()));
                     at.PesquisarProdutoCliche();
                     at.setVisible(true);
-
+                    
                 }
             }
-
+            
         });
 
     }//GEN-LAST:event_jT_trabalhosMouseClicked
@@ -245,7 +261,7 @@ public class ListarTrabalhos extends javax.swing.JPanel {
         Utilitarios utl = new Utilitarios();
         try {
             utl.gerarPDF(jT_trabalhos, "tabela.pdf", Arrays.asList("RP Trabalho", "Faca", "Destino Clichê", "Tipo Clichê", "RP Clichê",
-                "Condição de Uso",  "Criado", "Modificado"), "FlexoApp/Tabela Trabalhos");
+                    "Condição de Uso", "Criado", "Modificado"), "FlexoApp/Tabela Trabalhos");
         } catch (FileNotFoundException | DocumentException e) {
             e.printStackTrace();
         } catch (IOException ex) {
@@ -253,10 +269,18 @@ public class ListarTrabalhos extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        Utilitarios utl = new Utilitarios();
+        utl.abrirPasta("//srv-fileserve/Arquivos/PRE-IMPRESSAO/Biblioteca CartonDruck/Automation/_Utilitarios/Controle_Cliches NylonFlex");
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_novoTrabalho;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
