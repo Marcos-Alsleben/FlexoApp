@@ -237,6 +237,70 @@ public class ProdutoClicheDAO {
 
     }
 
+//Metodo PesquisarEliminarCliche
+    public List<ProdutoCliche> pesquisarEliminarCliche(String pesquisa) {
+
+        try {
+
+            // Passo 1 criar a lista
+            List<ProdutoCliche> lista = new ArrayList<>();
+
+            // Passo 2 criar o comando sql, organizar e executar
+            //String sql = "select * from produtocliente where rp_cliche like '%?%' order by abs(rp_cliche) asc";
+            String sql = "SELECT produtocliche.id, rp_cliche, faca, ft, Cliente_id, cliente.nome as cliente, \n"
+                    + "TipoCliche_id, tipocliche.nome as tipocliche, DestinoCliche_id, destinocliche.nome as destinocliche, \n"
+                    + "status, cliche_criado, cliche_modificado FROM flexo.produtocliche\n"
+                    + "INNER JOIN flexo.cliente ON produtocliche.Cliente_id = cliente.id\n"
+                    + "INNER JOIN flexo.destinocliche ON produtocliche.DestinoCliche_id = destinocliche.id\n"
+                    + "INNER JOIN flexo.tipocliche ON produtocliche.TipoCliche_id = tipocliche.id\n"
+                    + "WHERE rp_cliche LIKE ?\n"
+                    + "or faca LIKE ?\n"
+                    + "or ft LIKE ?\n"
+                    + "or cliente.nome LIKE ?\n"
+                    + "or destinocliche.nome LIKE ?\n"
+                    + "or tipocliche.nome LIKE ?\n"
+                    + "or status LIKE ? order by abs(rp_cliche) asc;";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, pesquisa);
+            stmt.setString(2, pesquisa);
+            stmt.setString(3, pesquisa);
+            stmt.setString(4, pesquisa);
+            stmt.setString(5, pesquisa);
+            stmt.setString(6, pesquisa);
+            stmt.setString(7, pesquisa);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                ProdutoCliche obj = new ProdutoCliche();
+
+                obj.setId(rs.getInt("id"));
+                obj.setRp_cliche(rs.getString("rp_cliche"));
+                obj.setFaca(rs.getString("faca"));
+                obj.setFt(rs.getString("ft"));
+                obj.setCliente_id(rs.getInt("Cliente_id"));
+                obj.setCliente(rs.getString("cliente"));
+                obj.setTipoCliche_id(rs.getInt("TipoCliche_id"));
+                obj.setTipocliche(rs.getString("Tipocliche"));
+                obj.setDestinoCliche_id(rs.getInt("DestinoCliche_id"));
+                obj.setDestinocliche(rs.getString("Destinocliche"));
+                obj.setStatus(rs.getString("status"));
+                obj.setCliche_criado(rs.getString("cliche_criado"));
+                obj.setCliche_modificado(rs.getString("cliche_modificado"));
+
+                lista.add(obj);
+
+            }
+            con.close();
+            return lista;
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro:" + erro);
+            return null;
+        }
+
+    }
+
 //Metodo ResgatarId
     public List<ProdutoCliche> RetornaId(String rp) {
 

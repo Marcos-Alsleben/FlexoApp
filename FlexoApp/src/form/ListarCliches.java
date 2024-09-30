@@ -291,9 +291,10 @@ public class ListarCliches extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_pesquisaKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         Utilitarios utl = new Utilitarios();
         try {
-            utl.gerarPDF(jT_cliches, "tabela.pdf", Arrays.asList("RP Clichê", "Faca", "FT", "Cliente", "Tipo Clichê",
+            utl.gerarPDF(jT_cliches, "TB_ListarCliches.pdf", Arrays.asList("RP Clichê", "Faca", "FT", "Cliente", "Tipo Clichê",
                     "Destino", "Status", "Criado", "Modificado"), "FlexoApp/Tabela Clichês");
         } catch (FileNotFoundException | DocumentException e) {
             e.printStackTrace();

@@ -55,7 +55,7 @@ public class Principal extends javax.swing.JFrame {
         jP_infoGeral = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jP_EliminarCliche = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        eliminarCliches1 = new form.EliminarCliches();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FlexoApp");
@@ -157,7 +157,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton7)
                 .addGap(25, 25, 25)
                 .addComponent(jButton8)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jP_CardLayout.setBackground(new java.awt.Color(255, 0, 204));
@@ -214,24 +214,15 @@ public class Principal extends javax.swing.JFrame {
         jP_CardLayout.add(jP_infoGeral, "infoGeral");
         jP_infoGeral.getAccessibleContext().setAccessibleName("infoGeral");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Eliminar Clichês");
-
         javax.swing.GroupLayout jP_EliminarClicheLayout = new javax.swing.GroupLayout(jP_EliminarCliche);
         jP_EliminarCliche.setLayout(jP_EliminarClicheLayout);
         jP_EliminarClicheLayout.setHorizontalGroup(
             jP_EliminarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_EliminarClicheLayout.createSequentialGroup()
-                .addContainerGap(415, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(417, Short.MAX_VALUE))
+            .addComponent(eliminarCliches1, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
         );
         jP_EliminarClicheLayout.setVerticalGroup(
             jP_EliminarClicheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_EliminarClicheLayout.createSequentialGroup()
-                .addContainerGap(197, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addContainerGap(238, Short.MAX_VALUE))
+            .addComponent(eliminarCliches1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
         );
 
         jP_CardLayout.add(jP_EliminarCliche, "EliminarCliche");
@@ -350,6 +341,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private form.EliminarCliches eliminarCliches1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -359,7 +351,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jP_CardLayout;
     private javax.swing.JPanel jP_EliminarCliche;
     private javax.swing.JPanel jP_ListarCliche;

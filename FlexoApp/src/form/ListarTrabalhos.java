@@ -152,7 +152,7 @@ public class ListarTrabalhos extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pasta_32px.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PastaPesquisa_32px.png"))); // NOI18N
         jButton2.setToolTipText("Abrir Controle Clichês");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,12 +260,12 @@ public class ListarTrabalhos extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Utilitarios utl = new Utilitarios();
         try {
-            utl.gerarPDF(jT_trabalhos, "tabela.pdf", Arrays.asList("RP Trabalho", "Faca", "Destino Clichê", "Tipo Clichê", "RP Clichê",
+            utl.gerarPDF(jT_trabalhos, "TB_ListarTrabalhos.pdf", Arrays.asList("RP Trabalho", "Faca", "Destino Clichê", "Tipo Clichê", "RP Clichê",
                     "Condição de Uso", "Criado", "Modificado"), "FlexoApp/Tabela Trabalhos");
         } catch (FileNotFoundException | DocumentException e) {
             e.printStackTrace();
         } catch (IOException ex) {
-            Logger.getLogger(ListarCliches.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListarTrabalhos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
