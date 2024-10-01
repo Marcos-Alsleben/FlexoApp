@@ -21,6 +21,7 @@ public class ProdutoCliche {
     private String cliente;
     private String tipocliche;
     private String destinocliche;
+    private String trabalho_criado;
 
 //Getter e Setter
 
@@ -126,6 +127,14 @@ public class ProdutoCliche {
 
     public void setDestinocliche(String destinocliche) {
         this.destinocliche = destinocliche;
+    }
+
+    public String getTrabalho_criado() {
+        return trabalho_criado;
+    }
+
+    public void setTrabalho_criado(String trabalho_criado) {
+        this.trabalho_criado = trabalho_criado;
     }
 
 

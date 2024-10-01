@@ -6,6 +6,7 @@ package form;
 
 import com.lowagie.text.DocumentException;
 import dao.ProdutoClicheDAO;
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
@@ -23,9 +24,9 @@ import model.Utilitarios;
 public class EliminarCliches extends javax.swing.JPanel {
 
 //Metodo Pesquisar FilmeFaca
-    public void PesquisarCliche() {
+    public void PesquisarEliminarCliche() {
 
-        String pesquisa = "%" + txt_pesquisa.getText() + "%";
+        String pesquisa = txt_pesquisa.getText();
 
         ProdutoClicheDAO dao = new ProdutoClicheDAO();
         List<ProdutoCliche> lista = dao.pesquisarEliminarCliche(pesquisa);
@@ -44,8 +45,7 @@ public class EliminarCliches extends javax.swing.JPanel {
                 c.getDestinoCliche_id(),
                 c.getDestinocliche(),
                 c.getStatus(),
-                c.getCliche_criado(),
-                c.getCliche_modificado()
+                c.getTrabalho_criado()
             });
 
         }
@@ -77,6 +77,14 @@ public class EliminarCliches extends javax.swing.JPanel {
         txt_pesquisa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_pesquisa.setText("24");
         txt_pesquisa.setToolTipText("Pesquisar");
+        txt_pesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_pesquisaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_pesquisaKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -98,20 +106,20 @@ public class EliminarCliches extends javax.swing.JPanel {
         jT_eliminarCliches.setAutoCreateRowSorter(true);
         jT_eliminarCliches.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "RP Clichê", "Faca", "FT", "Cliente_id", "Cliente", "TipoCliche_id", "Tipo Clichê", "Destino_id", "Destino", "Status", "Criado", "Modificado"
+                "id", "RP Clichê", "Faca", "FT", "Cliente_id", "Cliente", "TipoCliche_id", "Tipo Clichê", "Destino_id", "Destino", "Status", "Trabalho Criado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -128,6 +136,11 @@ public class EliminarCliches extends javax.swing.JPanel {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/AtualizarDados_32px.png"))); // NOI18N
         jButton3.setToolTipText("Carregar dados");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -170,7 +183,7 @@ public class EliminarCliches extends javax.swing.JPanel {
         Utilitarios utl = new Utilitarios();
         try {
             utl.gerarPDF(jT_eliminarCliches, "TB_EliminarCliche.pdf", Arrays.asList("RP Clichê", "Faca", "FT", "Cliente", "Tipo Clichê",
-                    "Destino", "Status", "Criado", "Modificado"), "FlexoApp/Tabela Eliminar Clichês");
+                    "Destino", "Status", "Trabalho Criado"), "FlexoApp/Tabela Eliminar Clichês");
         } catch (FileNotFoundException | DocumentException e) {
             e.printStackTrace();
         } catch (IOException ex) {
@@ -178,6 +191,26 @@ public class EliminarCliches extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        PesquisarEliminarCliche();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txt_pesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisaKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            PesquisarEliminarCliche();
+        }
+
+    }//GEN-LAST:event_txt_pesquisaKeyPressed
+
+    private void txt_pesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisaKeyTyped
+
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_pesquisaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

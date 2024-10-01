@@ -246,28 +246,21 @@ public class ProdutoClicheDAO {
             List<ProdutoCliche> lista = new ArrayList<>();
 
             // Passo 2 criar o comando sql, organizar e executar
-            //String sql = "select * from produtocliente where rp_cliche like '%?%' order by abs(rp_cliche) asc";
-            String sql = "SELECT produtocliche.id, rp_cliche, faca, ft, Cliente_id, cliente.nome as cliente, \n"
-                    + "TipoCliche_id, tipocliche.nome as tipocliche, DestinoCliche_id, destinocliche.nome as destinocliche, \n"
-                    + "status, cliche_criado, cliche_modificado FROM flexo.produtocliche\n"
+            String sql = "SELECT produtocliche.id, rp_cliche, faca, ft, Cliente_id, cliente.nome as cliente,\n"
+                    + "TipoCliche_id, tipocliche.nome as tipocliche, DestinoCliche_id, destinocliche.nome as destinocliche,\n"
+                    + "status, trabalho_criado FROM flexo.produtocliche\n"
                     + "INNER JOIN flexo.cliente ON produtocliche.Cliente_id = cliente.id\n"
                     + "INNER JOIN flexo.destinocliche ON produtocliche.DestinoCliche_id = destinocliche.id\n"
                     + "INNER JOIN flexo.tipocliche ON produtocliche.TipoCliche_id = tipocliche.id\n"
-                    + "WHERE rp_cliche LIKE ?\n"
-                    + "or faca LIKE ?\n"
-                    + "or ft LIKE ?\n"
-                    + "or cliente.nome LIKE ?\n"
-                    + "or destinocliche.nome LIKE ?\n"
-                    + "or tipocliche.nome LIKE ?\n"
-                    + "or status LIKE ? order by abs(rp_cliche) asc;";
+                    + "INNER JOIN flexo.trabalhoprodutocliche on produtocliche.id = trabalhoprodutocliche.ProdutoCliche_id\n"
+                    + "WHERE produtocliche.status = 'ATIVO' \n"
+                    + "AND trabalhoprodutocliche.trabalho_criado <= DATE_SUB(NOW(), INTERVAL ? MONTH)\n"
+                    + "order by abs(rp_cliche) asc;";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1, pesquisa);
-            stmt.setString(2, pesquisa);
-            stmt.setString(3, pesquisa);
-            stmt.setString(4, pesquisa);
-            stmt.setString(5, pesquisa);
-            stmt.setString(6, pesquisa);
-            stmt.setString(7, pesquisa);
+
+            int meses = Integer.parseInt(pesquisa);
+            stmt.setInt(1, meses);
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -285,8 +278,7 @@ public class ProdutoClicheDAO {
                 obj.setDestinoCliche_id(rs.getInt("DestinoCliche_id"));
                 obj.setDestinocliche(rs.getString("Destinocliche"));
                 obj.setStatus(rs.getString("status"));
-                obj.setCliche_criado(rs.getString("cliche_criado"));
-                obj.setCliche_modificado(rs.getString("cliche_modificado"));
+                obj.setTrabalho_criado(rs.getString("trabalho_criado"));
 
                 lista.add(obj);
 
