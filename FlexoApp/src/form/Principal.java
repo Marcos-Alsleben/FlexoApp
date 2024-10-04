@@ -24,7 +24,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         setIconImage();
         this.setLocationRelativeTo(null);
-        //this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
 
     }
 
