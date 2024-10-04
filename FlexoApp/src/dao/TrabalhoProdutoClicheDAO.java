@@ -43,7 +43,7 @@ public class TrabalhoProdutoClicheDAO {
             stmt.close();
             con.close();
 
-            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso!");
+            //JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso!");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
@@ -73,7 +73,7 @@ public class TrabalhoProdutoClicheDAO {
             stmt.close();
             con.close();
 
-            JOptionPane.showMessageDialog(null, "Alterado com Sucesso!");
+            //JOptionPane.showMessageDialog(null, "Alterado com Sucesso!");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
@@ -98,7 +98,7 @@ public class TrabalhoProdutoClicheDAO {
             stmt.close();
             con.close();
 
-            JOptionPane.showMessageDialog(null, "Excluido com Sucesso!");
+           // JOptionPane.showMessageDialog(null, "Excluido com Sucesso!");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);

@@ -47,7 +47,7 @@ public class ProdutoClicheDAO {
             stmt.close();
             con.close();
 
-            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso!");
+            //JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso!");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
@@ -82,7 +82,7 @@ public class ProdutoClicheDAO {
             stmt.close();
             con.close();
 
-            JOptionPane.showMessageDialog(null, "Alterado com Sucesso!");
+            //JOptionPane.showMessageDialog(null, "Alterado com Sucesso!");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
@@ -107,7 +107,7 @@ public class ProdutoClicheDAO {
             stmt.close();
             con.close();
 
-            JOptionPane.showMessageDialog(null, "Excluido com Sucesso!");
+           // JOptionPane.showMessageDialog(null, "Excluido com Sucesso!");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
@@ -248,7 +248,7 @@ public class ProdutoClicheDAO {
             // Passo 2 criar o comando sql, organizar e executar
             String sql = "SELECT produtocliche.id, rp_cliche, faca, ft, Cliente_id, cliente.nome as cliente,\n"
                     + "TipoCliche_id, tipocliche.nome as tipocliche, DestinoCliche_id, destinocliche.nome as destinocliche,\n"
-                    + "status, trabalho_criado FROM flexo.produtocliche\n"
+                    + "status, trabalho_criado, cliche_criado, cliche_modificado FROM flexo.produtocliche\n"
                     + "INNER JOIN flexo.cliente ON produtocliche.Cliente_id = cliente.id\n"
                     + "INNER JOIN flexo.destinocliche ON produtocliche.DestinoCliche_id = destinocliche.id\n"
                     + "INNER JOIN flexo.tipocliche ON produtocliche.TipoCliche_id = tipocliche.id\n"
@@ -279,6 +279,8 @@ public class ProdutoClicheDAO {
                 obj.setDestinocliche(rs.getString("Destinocliche"));
                 obj.setStatus(rs.getString("status"));
                 obj.setTrabalho_criado(rs.getString("trabalho_criado"));
+                obj.setCliche_criado(rs.getString("cliche_criado"));
+                obj.setCliche_modificado(rs.getString("cliche_modificado"));
 
                 lista.add(obj);
 

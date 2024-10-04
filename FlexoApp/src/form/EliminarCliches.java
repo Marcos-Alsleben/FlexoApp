@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ProdutoCliche;
 import model.Utilitarios;
@@ -45,7 +46,9 @@ public class EliminarCliches extends javax.swing.JPanel {
                 c.getDestinoCliche_id(),
                 c.getDestinocliche(),
                 c.getStatus(),
-                c.getTrabalho_criado()
+                c.getTrabalho_criado(),
+                c.getCliche_criado(),
+                c.getCliche_modificado()
             });
 
         }
@@ -73,6 +76,7 @@ public class EliminarCliches extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jT_eliminarCliches = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         txt_pesquisa.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_pesquisa.setText("24");
@@ -94,6 +98,7 @@ public class EliminarCliches extends javax.swing.JPanel {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pdf_32px.png"))); // NOI18N
         jButton1.setToolTipText("Gerar PDF");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -101,25 +106,31 @@ public class EliminarCliches extends javax.swing.JPanel {
         });
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Eliminar_32px.png"))); // NOI18N
-        jButton2.setToolTipText("Eliminar e Gerar XML");
+        jButton2.setToolTipText("Eliminar Clichê");
+        jButton2.setEnabled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jT_eliminarCliches.setAutoCreateRowSorter(true);
         jT_eliminarCliches.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "RP Clichê", "Faca", "FT", "Cliente_id", "Cliente", "TipoCliche_id", "Tipo Clichê", "Destino_id", "Destino", "Status", "Trabalho Criado"
+                "id", "RP Clichê", "Faca", "FT", "Cliente_id", "Cliente", "TipoCliche_id", "Tipo Clichê", "Destino_id", "Destino", "Status", "Trabalho Criado", "Clichê Criado", "Clichê Modificado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -142,6 +153,15 @@ public class EliminarCliches extends javax.swing.JPanel {
             }
         });
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/xml_32px.png"))); // NOI18N
+        jButton4.setToolTipText("Gerar XML");
+        jButton4.setEnabled(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,14 +173,16 @@ public class EliminarCliches extends javax.swing.JPanel {
                 .addComponent(txt_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
                 .addContainerGap())
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +194,8 @@ public class EliminarCliches extends javax.swing.JPanel {
                     .addComponent(jButton1)
                     .addComponent(jLabel2)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE))
         );
@@ -180,10 +203,15 @@ public class EliminarCliches extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        if (jT_eliminarCliches.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "A tabela está vazia!", "", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         Utilitarios utl = new Utilitarios();
         try {
             utl.gerarPDF(jT_eliminarCliches, "TB_EliminarCliche.pdf", Arrays.asList("RP Clichê", "Faca", "FT", "Cliente", "Tipo Clichê",
-                    "Destino", "Status", "Trabalho Criado"), "FlexoApp/Tabela Eliminar Clichês");
+                    "Destino", "Status", "Trabalho Criado"), "FlexoApp/Tabela Eliminar Cliches");
         } catch (FileNotFoundException | DocumentException e) {
             e.printStackTrace();
         } catch (IOException ex) {
@@ -194,6 +222,9 @@ public class EliminarCliches extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         PesquisarEliminarCliche();
+        jButton2.setEnabled(true);
+        jButton1.setEnabled(true);
+        jButton4.setEnabled(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txt_pesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisaKeyPressed
@@ -212,11 +243,57 @@ public class EliminarCliches extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txt_pesquisaKeyTyped
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        if (jT_eliminarCliches.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "A tabela está vazia!", "", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja alterar o status para 'ELIMINADO' de todos os elementos da tabela?", "", JOptionPane.YES_NO_OPTION);
+
+        if (resposta == 0) {
+
+            try {
+                for (int row = 0; row < jT_eliminarCliches.getRowCount(); row++) {
+
+                    ProdutoCliche obj = new ProdutoCliche();
+
+                    obj.setRp_cliche(jT_eliminarCliches.getValueAt(row, 1).toString());
+                    obj.setFaca(jT_eliminarCliches.getValueAt(row, 2).toString());
+                    obj.setFt(jT_eliminarCliches.getValueAt(row, 3).toString());
+                    obj.setCliente_id(Integer.parseInt(jT_eliminarCliches.getValueAt(row, 4).toString()));
+                    obj.setTipoCliche_id(Integer.parseInt(jT_eliminarCliches.getValueAt(row, 6).toString()));
+                    obj.setDestinoCliche_id(Integer.parseInt(jT_eliminarCliches.getValueAt(row, 8).toString()));
+                    obj.setStatus("ELIMINADO");
+                    obj.setCliche_criado(jT_eliminarCliches.getValueAt(row, 12).toString());
+                    obj.setCliche_modificado(new Utilitarios().DH());
+                    obj.setId(Integer.parseInt(jT_eliminarCliches.getValueAt(row, 0).toString()));
+
+                    ProdutoClicheDAO dao = new ProdutoClicheDAO();
+                    dao.alterarProdutoCliche(obj);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro ao atualizar banco de dados: " + e.getMessage());
+            }
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        JOptionPane.showMessageDialog(null, "Este recurso está em desenvolvimento!", "", JOptionPane.WARNING_MESSAGE);
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
