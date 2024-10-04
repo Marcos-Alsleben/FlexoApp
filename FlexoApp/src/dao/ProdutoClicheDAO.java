@@ -48,7 +48,6 @@ public class ProdutoClicheDAO {
             con.close();
 
             //JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso!");
-
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
 
@@ -83,7 +82,6 @@ public class ProdutoClicheDAO {
             con.close();
 
             //JOptionPane.showMessageDialog(null, "Alterado com Sucesso!");
-
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
 
@@ -107,8 +105,7 @@ public class ProdutoClicheDAO {
             stmt.close();
             con.close();
 
-           // JOptionPane.showMessageDialog(null, "Excluido com Sucesso!");
-
+            // JOptionPane.showMessageDialog(null, "Excluido com Sucesso!");
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
 
@@ -253,8 +250,13 @@ public class ProdutoClicheDAO {
                     + "INNER JOIN flexo.destinocliche ON produtocliche.DestinoCliche_id = destinocliche.id\n"
                     + "INNER JOIN flexo.tipocliche ON produtocliche.TipoCliche_id = tipocliche.id\n"
                     + "INNER JOIN flexo.trabalhoprodutocliche on produtocliche.id = trabalhoprodutocliche.ProdutoCliche_id\n"
-                    + "WHERE produtocliche.status = 'ATIVO' \n"
+                    + " WHERE produtocliche.status = 'ATIVO' \n"
                     + "AND trabalhoprodutocliche.trabalho_criado <= DATE_SUB(NOW(), INTERVAL ? MONTH)\n"
+                    + "AND trabalhoprodutocliche.trabalho_criado = (\n"
+                    + "      SELECT MAX(trabalhoprodutocliche.trabalho_criado)\n"
+                    + "      FROM flexo.trabalhoprodutocliche\n"
+                    + "      WHERE trabalhoprodutocliche.ProdutoCliche_id = produtocliche.id\n"
+                    + "  )\n"
                     + "order by abs(rp_cliche) asc;";
             PreparedStatement stmt = con.prepareStatement(sql);
 
