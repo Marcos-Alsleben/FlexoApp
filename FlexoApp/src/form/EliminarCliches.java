@@ -141,9 +141,45 @@ public class EliminarCliches extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jT_eliminarCliches.setToolTipText("Duplo clicke no registro para alterá-lo!");
+        jT_eliminarCliches.setToolTipText("");
         jT_eliminarCliches.setFocusable(false);
         jScrollPane1.setViewportView(jT_eliminarCliches);
+        if (jT_eliminarCliches.getColumnModel().getColumnCount() > 0) {
+            jT_eliminarCliches.getColumnModel().getColumn(0).setMinWidth(20);
+            jT_eliminarCliches.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jT_eliminarCliches.getColumnModel().getColumn(0).setMaxWidth(150);
+            jT_eliminarCliches.getColumnModel().getColumn(1).setMinWidth(100);
+            jT_eliminarCliches.getColumnModel().getColumn(1).setPreferredWidth(50);
+            jT_eliminarCliches.getColumnModel().getColumn(2).setMinWidth(100);
+            jT_eliminarCliches.getColumnModel().getColumn(2).setPreferredWidth(50);
+            jT_eliminarCliches.getColumnModel().getColumn(3).setMinWidth(50);
+            jT_eliminarCliches.getColumnModel().getColumn(3).setPreferredWidth(50);
+            jT_eliminarCliches.getColumnModel().getColumn(4).setMinWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(4).setPreferredWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(4).setMaxWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(5).setMinWidth(150);
+            jT_eliminarCliches.getColumnModel().getColumn(5).setPreferredWidth(100);
+            jT_eliminarCliches.getColumnModel().getColumn(6).setMinWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(6).setPreferredWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(6).setMaxWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(7).setMinWidth(100);
+            jT_eliminarCliches.getColumnModel().getColumn(7).setPreferredWidth(100);
+            jT_eliminarCliches.getColumnModel().getColumn(8).setMinWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(8).setPreferredWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(8).setMaxWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(9).setMinWidth(50);
+            jT_eliminarCliches.getColumnModel().getColumn(9).setPreferredWidth(30);
+            jT_eliminarCliches.getColumnModel().getColumn(10).setMinWidth(100);
+            jT_eliminarCliches.getColumnModel().getColumn(10).setPreferredWidth(100);
+            jT_eliminarCliches.getColumnModel().getColumn(11).setMinWidth(150);
+            jT_eliminarCliches.getColumnModel().getColumn(11).setPreferredWidth(150);
+            jT_eliminarCliches.getColumnModel().getColumn(12).setMinWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(12).setPreferredWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(12).setMaxWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(13).setMinWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(13).setPreferredWidth(0);
+            jT_eliminarCliches.getColumnModel().getColumn(13).setMaxWidth(0);
+        }
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/AtualizarDados_32px.png"))); // NOI18N
         jButton3.setToolTipText("Carregar dados");
@@ -250,7 +286,8 @@ public class EliminarCliches extends javax.swing.JPanel {
             return;
         }
 
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja alterar o status para 'ELIMINADO' de todos os elementos da tabela?", "", JOptionPane.YES_NO_OPTION);
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja alterar o status para 'ELIMINADO' de "
+                + "todos os elementos da tabela 'Eliminar Clichê'?", "", JOptionPane.YES_NO_OPTION);
 
         if (resposta == 0) {
 
