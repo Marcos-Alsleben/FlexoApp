@@ -296,47 +296,51 @@ public class NovoCliche extends javax.swing.JFrame {
         if ("".equals(txt_rp.getText())) {
             JOptionPane.showMessageDialog(null, "RP Inválido!", "", 2);
         } else {
-            if ("".equals(txt_faca.getText())) {
-                JOptionPane.showMessageDialog(null, "Faca Iválido!", "", 2);
+            if (!txt_rp.getText().contains(".")) {
+                JOptionPane.showMessageDialog(null, "RP Inválido!", "", 2);
             } else {
-                if ("".equals(txt_ft.getText())) {
-                    JOptionPane.showMessageDialog(null, "FT Iválido!", "", 2);
+                if ("".equals(txt_faca.getText())) {
+                    JOptionPane.showMessageDialog(null, "Faca Iválido!", "", 2);
                 } else {
-                    if ("".equals(cb_cliente.getSelectedItem().toString())) {
-                        JOptionPane.showMessageDialog(null, "Cliente Iválido!", "", 2);
+                    if ("".equals(txt_ft.getText())) {
+                        JOptionPane.showMessageDialog(null, "FT Iválido!", "", 2);
                     } else {
-                        if ("".equals(cb_tipocliche.getSelectedItem().toString())) {
-                            JOptionPane.showMessageDialog(null, "Tipo Clichê Iválido!", "", 2);
+                        if ("".equals(cb_cliente.getSelectedItem().toString())) {
+                            JOptionPane.showMessageDialog(null, "Cliente Iválido!", "", 2);
                         } else {
-                            if ("".equals(cb_destino.getSelectedItem().toString())) {
-                                JOptionPane.showMessageDialog(null, "Destino Iválido!", "", 2);
+                            if ("".equals(cb_tipocliche.getSelectedItem().toString())) {
+                                JOptionPane.showMessageDialog(null, "Tipo Clichê Iválido!", "", 2);
                             } else {
+                                if ("".equals(cb_destino.getSelectedItem().toString())) {
+                                    JOptionPane.showMessageDialog(null, "Destino Iválido!", "", 2);
+                                } else {
 
-                                Utilitarios dh = new Utilitarios();
-                                String dataHora = dh.DH();
+                                    Utilitarios dh = new Utilitarios();
+                                    String dataHora = dh.DH();
 
-                                int idcliente = ApontaIdCliente();
-                                int idtipocliche = ApontaIdTipoCliche();
-                                int iddestinocliche = ApontaIdDestinoCliente();
+                                    int idcliente = ApontaIdCliente();
+                                    int idtipocliche = ApontaIdTipoCliche();
+                                    int iddestinocliche = ApontaIdDestinoCliente();
 
-                                ProdutoCliche obj = new ProdutoCliche();
+                                    ProdutoCliche obj = new ProdutoCliche();
 
-                                obj.setRp_cliche(txt_rp.getText());
-                                obj.setFaca(txt_faca.getText());
-                                obj.setFt(txt_ft.getText());
-                                obj.setCliente_id(idcliente);
-                                obj.setTipoCliche_id(idtipocliche);
-                                obj.setDestinoCliche_id(iddestinocliche);
-                                obj.setStatus("ATIVO");
-                                obj.setCliche_criado(txt_data.getText());
-                                obj.setCliche_modificado(dataHora);
+                                    obj.setRp_cliche(txt_rp.getText());
+                                    obj.setFaca(txt_faca.getText());
+                                    obj.setFt(txt_ft.getText());
+                                    obj.setCliente_id(idcliente);
+                                    obj.setTipoCliche_id(idtipocliche);
+                                    obj.setDestinoCliche_id(iddestinocliche);
+                                    obj.setStatus("ATIVO");
+                                    obj.setCliche_criado(txt_data.getText());
+                                    obj.setCliche_modificado(dataHora);
 
-                                ProdutoClicheDAO dao = new ProdutoClicheDAO();
-                                dao.cadastrarProdutoCliche(obj);
+                                    ProdutoClicheDAO dao = new ProdutoClicheDAO();
+                                    dao.cadastrarProdutoCliche(obj);
 
-                                setTextField();
-                                this.dispose();
+                                    setTextField();
+                                    this.dispose();
 
+                                }
                             }
                         }
                     }
