@@ -340,36 +340,41 @@ public class AlterarTrabalho extends javax.swing.JFrame {
     }//GEN-LAST:event_jC_dataActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         if ("".equals(txt_rp.getText())) {
             JOptionPane.showMessageDialog(null, "RP do Trabalho Inválido!", "", 2);
         } else {
-            if ("".equals(cb_condicaouso.getSelectedItem().toString())) {
-                JOptionPane.showMessageDialog(null, "Condição de Uso Inválido!", "", 2);
+            if (!txt_rp.getText().contains(".")) {
+                JOptionPane.showMessageDialog(null, "RP do Trabalho Inválido!", "", 2);
             } else {
-                if ("".equals(txt_idcliche.getText())) {
-                    JOptionPane.showMessageDialog(null, "Id do Clichê Inválido!", "", 2);
+                if ("".equals(cb_condicaouso.getSelectedItem().toString())) {
+                    JOptionPane.showMessageDialog(null, "Condição de Uso Inválido!", "", 2);
                 } else {
+                    if ("".equals(txt_idcliche.getText())) {
+                        JOptionPane.showMessageDialog(null, "Id do Clichê Inválido!", "", 2);
+                    } else {
 
-                    Utilitarios dh = new Utilitarios();
-                    String dataHora = dh.DH();
+                        Utilitarios dh = new Utilitarios();
+                        String dataHora = dh.DH();
 
-                    //int idcliente = ApontaIdCliente();
-                    //int idtipocliche = ApontaIdTipoCliche();
-                    //int iddestinocliche = ApontaIdDestinoCliente();
-                    TrabalhoProdutoCliche obj = new TrabalhoProdutoCliche();
+                        //int idcliente = ApontaIdCliente();
+                        //int idtipocliche = ApontaIdTipoCliche();
+                        //int iddestinocliche = ApontaIdDestinoCliente();
+                        TrabalhoProdutoCliche obj = new TrabalhoProdutoCliche();
 
-                    obj.setRp_trabalho(txt_rp.getText());
-                    obj.setCondicao_uso(cb_condicaouso.getSelectedItem().toString());
-                    obj.setProdutoCliche_id(Integer.parseInt(txt_idcliche.getText()));
-                    obj.setTrabalho_criado(txt_data.getText());
-                    obj.setTrabalho_modificado(dataHora);
-                    obj.setId(Integer.parseInt(txt_id.getText()));
+                        obj.setRp_trabalho(txt_rp.getText());
+                        obj.setCondicao_uso(cb_condicaouso.getSelectedItem().toString());
+                        obj.setProdutoCliche_id(Integer.parseInt(txt_idcliche.getText()));
+                        obj.setTrabalho_criado(txt_data.getText());
+                        obj.setTrabalho_modificado(dataHora);
+                        obj.setId(Integer.parseInt(txt_id.getText()));
 
-                    TrabalhoProdutoClicheDAO dao = new TrabalhoProdutoClicheDAO();
-                    dao.alterarTrabalhoProdutoCliche(obj);
+                        TrabalhoProdutoClicheDAO dao = new TrabalhoProdutoClicheDAO();
+                        dao.alterarTrabalhoProdutoCliche(obj);
 
-                    setTextField();
-                    this.dispose();
+                        setTextField();
+                        this.dispose();
+                    }
                 }
             }
         }
