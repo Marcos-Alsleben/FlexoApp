@@ -365,15 +365,8 @@ public class NovoCliche extends javax.swing.JFrame {
 
     private void txt_ftKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ftKeyTyped
 
-        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321.-";
-        char keyChar = evt.getKeyChar();
-
-        if (keyChar == ',') {
-            evt.setKeyChar('.');
-        } else if (Character.isLetter(keyChar)) {
-            keyChar = Character.toUpperCase(keyChar);
-            evt.setKeyChar(keyChar);
-        } else if (!caracteres.contains(Character.toUpperCase(keyChar) + "")) {
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
 
