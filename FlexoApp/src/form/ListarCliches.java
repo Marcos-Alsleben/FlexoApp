@@ -168,6 +168,9 @@ public class ListarCliches extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_pesquisaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_pesquisaKeyTyped(evt);
+            }
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -303,6 +306,19 @@ public class ListarCliches extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_pesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisaKeyTyped
+
+        char keyChar = evt.getKeyChar();
+
+        if (Character.isLetter(keyChar)) {
+            keyChar = Character.toUpperCase(keyChar);
+            evt.setKeyChar(keyChar);
+        } else if (evt.getKeyChar() == ',') {
+            evt.setKeyChar('.');
+        }
+
+    }//GEN-LAST:event_txt_pesquisaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

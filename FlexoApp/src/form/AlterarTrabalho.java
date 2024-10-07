@@ -373,6 +373,7 @@ public class AlterarTrabalho extends javax.swing.JFrame {
                         dao.alterarTrabalhoProdutoCliche(obj);
 
                         setTextField();
+                        jC_data.setSelected(false);
                         this.dispose();
                     }
                 }

@@ -338,6 +338,7 @@ public class NovoCliche extends javax.swing.JFrame {
                                     dao.cadastrarProdutoCliche(obj);
 
                                     setTextField();
+                                    jC_data.setSelected(false);
                                     this.dispose();
 
                                 }

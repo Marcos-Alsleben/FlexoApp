@@ -25,15 +25,15 @@ import model.Utilitarios;
  * @author gmg
  */
 public class ListarTrabalhos extends javax.swing.JPanel {
-    
+
     private NovoTrabalho nt;
     private AlterarTrabalho at;
 
 //Metodo Pesquisar Trabalhos
     public void PesquisarTrabalhos() {
-        
+
         String pesquisa = "%" + txt_pesquisa.getText() + "%";
-        
+
         TrabalhoProdutoClicheDAO dao = new TrabalhoProdutoClicheDAO();
         List<TrabalhoProdutoCliche> lista = dao.pesquisarTrabalhoProdutoCliche(pesquisa);
         DefaultTableModel dados = (DefaultTableModel) jT_trabalhos.getModel();
@@ -51,11 +51,11 @@ public class ListarTrabalhos extends javax.swing.JPanel {
                 c.getTrabalho_criado(),
                 c.getTrabalho_modificado()
             });
-            
+
         }
-        
+
     }
-    
+
     public ListarTrabalhos() {
         initComponents();
     }
@@ -138,6 +138,9 @@ public class ListarTrabalhos extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_pesquisaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_pesquisaKeyTyped(evt);
+            }
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -196,14 +199,14 @@ public class ListarTrabalhos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_novoTrabalhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoTrabalhoActionPerformed
-        
+
         if (nt == null) {
             nt = new NovoTrabalho();
             nt.setLocationRelativeTo(this);
             nt.setVisible(true);
             nt.setTextField();
             nt.PesquisarProdutoCliche();
-            
+
         }
         nt.setVisible(true);
         nt.setTextField();
@@ -212,25 +215,25 @@ public class ListarTrabalhos extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_novoTrabalhoActionPerformed
 
     private void txt_pesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisaKeyReleased
-        
+
         PesquisarTrabalhos();
 
     }//GEN-LAST:event_txt_pesquisaKeyReleased
 
     private void jT_trabalhosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jT_trabalhosMouseClicked
-        
+
         jT_trabalhos.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    
+
                     if (at == null) {
                         at = new AlterarTrabalho();
-                        
+
                         int x = jT_trabalhos.getLocationOnScreen().x + (jT_trabalhos.getWidth() - at.getWidth()) / 2;
                         int y = jT_trabalhos.getLocation().y + (at.getHeight() / 2);
-                        
+
                         at.setLocation(x, y);
-                        
+
                         at.AtualizarId(jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 0).toString());
                         at.AtualizarRptrabalho(jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 1).toString());
                         at.AtualizarIdCliche((jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 5).toString()));
@@ -239,7 +242,7 @@ public class ListarTrabalhos extends javax.swing.JPanel {
                         at.AtualizarData((jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 8).toString()));
                         at.PesquisarProdutoCliche();
                         at.setVisible(true);
-                        
+
                     }
                     at.AtualizarId(jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 0).toString());
                     at.AtualizarRptrabalho(jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 1).toString());
@@ -249,10 +252,10 @@ public class ListarTrabalhos extends javax.swing.JPanel {
                     at.AtualizarData((jT_trabalhos.getValueAt(jT_trabalhos.getSelectedRow(), 8).toString()));
                     at.PesquisarProdutoCliche();
                     at.setVisible(true);
-                    
+
                 }
             }
-            
+
         });
 
     }//GEN-LAST:event_jT_trabalhosMouseClicked
@@ -270,11 +273,24 @@ public class ListarTrabalhos extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         Utilitarios utl = new Utilitarios();
         utl.abrirPasta("//srv-fileserve/Arquivos/PRE-IMPRESSAO/Biblioteca CartonDruck/Automation/_Utilitarios/Controle_Cliches NylonFlex");
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txt_pesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisaKeyTyped
+
+        char keyChar = evt.getKeyChar();
+
+        if (Character.isLetter(keyChar)) {
+            keyChar = Character.toUpperCase(keyChar);
+            evt.setKeyChar(keyChar);
+        } else if (evt.getKeyChar() == ',') {
+            evt.setKeyChar('.');
+        }
+
+    }//GEN-LAST:event_txt_pesquisaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

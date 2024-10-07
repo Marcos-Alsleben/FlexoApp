@@ -306,6 +306,7 @@ public class NovoTrabalho extends javax.swing.JFrame {
                         dao.cadastrarTrabalhoProdutoCliche(obj);
 
                         setTextField();
+                        jC_data.setSelected(false);
                         this.dispose();
                     }
                 }
