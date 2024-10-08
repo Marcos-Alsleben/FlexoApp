@@ -24,6 +24,8 @@ import model.Utilitarios;
  */
 public class EliminarCliches extends javax.swing.JPanel {
 
+    private GerarXML gx;
+
 //Metodo Pesquisar FilmeFaca
     public void PesquisarEliminarCliche() {
 
@@ -321,7 +323,14 @@ public class EliminarCliches extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        JOptionPane.showMessageDialog(null, "Este recurso está em desenvolvimento!", "", JOptionPane.WARNING_MESSAGE);
+        if (gx == null) {
+            gx = new GerarXML();
+            gx.setLocationRelativeTo(this);
+            gx.setVisible(true);
+        }
+        gx.setVisible(true);
+
+//JOptionPane.showMessageDialog(null, "Este recurso está em desenvolvimento!", "", JOptionPane.WARNING_MESSAGE);
 
     }//GEN-LAST:event_jButton4ActionPerformed
 

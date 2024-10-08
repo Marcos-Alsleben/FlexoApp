@@ -170,6 +170,40 @@ public class ProdutoClicheDAO {
 
     }
 
+//Metodo ListarProdutoClicheEliminado
+    public List<ProdutoCliche> ListarProdutoClicheEliminado() {
+
+        try {
+
+            // Passo 1 criar a lista
+            List<ProdutoCliche> lista = new ArrayList<>();
+
+            // Passo 2 criar o comando sql, organizar e executar
+            String sql = "SELECT rp_cliche FROM flexo.produtocliche\n"
+                    + "WHERE status = 'ELIMINADO' order by abs(rp_cliche) asc";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                ProdutoCliche obj = new ProdutoCliche();
+
+                obj.setRp_cliche(rs.getString("rp_cliche"));
+
+                lista.add(obj);
+
+            }
+            con.close();
+            return lista;
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro:" + erro);
+            return null;
+        }
+
+    }
+
 //Metodo PesquisarProdutoCliche
     public List<ProdutoCliche> pesquisarProdutoCliche(String pesquisa) {
 
