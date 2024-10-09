@@ -70,7 +70,7 @@ public class GerarXML extends javax.swing.JFrame {
 //Metodo Info padrao
 public void InfoPadrao(){
 
-txt_localPasta.setText("c:/temp");
+txt_localPasta.setText("\\\\srv-fileserve/Arquivos/PRE-IMPRESSAO/Biblioteca CartonDruck/Automation/_Utilitarios");
 jButton2.requestFocus();
 
 }
@@ -99,8 +99,6 @@ jButton2.requestFocus();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerar XML");
-
-        txt_localPasta.setText("C:/temp/teste.xml");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Reticencias_16.png"))); // NOI18N
         jButton1.setToolTipText("Alterar local");
