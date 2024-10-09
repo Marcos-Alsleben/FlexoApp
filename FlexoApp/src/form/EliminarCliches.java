@@ -326,8 +326,10 @@ public class EliminarCliches extends javax.swing.JPanel {
         if (gx == null) {
             gx = new GerarXML();
             gx.setLocationRelativeTo(this);
+            gx.InfoPadrao();
             gx.setVisible(true);
         }
+        gx.InfoPadrao();
         gx.setVisible(true);
 
 //JOptionPane.showMessageDialog(null, "Este recurso está em desenvolvimento!", "", JOptionPane.WARNING_MESSAGE);

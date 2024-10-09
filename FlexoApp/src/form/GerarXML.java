@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 import model.ProdutoCliche;
 import java.io.File;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,7 +28,8 @@ import org.w3c.dom.Element;
  */
 public class GerarXML extends javax.swing.JFrame {
 
-    public void gerarXML(List<ProdutoCliche> lista, String caminhoArquivo) {
+//Metodo Gerar XML  
+  public void gerarXML(List<ProdutoCliche> lista, String caminhoArquivo) {
         try {
             // Cria uma instância de DocumentBuilderFactory
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -56,12 +58,23 @@ public class GerarXML extends javax.swing.JFrame {
 
             transformer.transform(source, result);
 
-            System.out.println("Arquivo XML gerado com sucesso!");
+            //System.out.println("Arquivo XML gerado com sucesso!");
+            JOptionPane.showMessageDialog(null, " XML salvo com Sucesso!");
 
         } catch (ParserConfigurationException | TransformerException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
+
+//Metodo Info padrao
+public void InfoPadrao(){
+
+txt_localPasta.setText("c:/temp");
+jButton2.requestFocus();
+
+}
+
 
     public GerarXML() {
         initComponents();
@@ -82,15 +95,16 @@ public class GerarXML extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerar XML");
 
         txt_localPasta.setText("C:/temp/teste.xml");
-        txt_localPasta.setFocusable(false);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Reticencias_16.png"))); // NOI18N
         jButton1.setToolTipText("Alterar local");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -98,7 +112,7 @@ public class GerarXML extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel2.setText(" Url saída xml:");
+        jLabel2.setText(" Url pasta saída xml");
 
         jButton2.setText("Salvar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +120,8 @@ public class GerarXML extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagem.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,25 +134,27 @@ public class GerarXML extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txt_localPasta, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                        .addComponent(txt_localPasta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_localPasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(txt_localPasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -166,7 +184,6 @@ public class GerarXML extends javax.swing.JFrame {
         String nomeArquivo = "/ListaClichesEliminados.xml";
         gerarXML(lista, caminhoArquivo + nomeArquivo);
         this.dispose();
-
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -212,6 +229,7 @@ public class GerarXML extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txt_localPasta;
     // End of variables declaration//GEN-END:variables
