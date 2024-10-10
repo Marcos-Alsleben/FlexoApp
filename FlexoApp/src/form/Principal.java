@@ -2,6 +2,7 @@ package form;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 
 /**
@@ -24,7 +25,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         setIconImage();
         this.setLocationRelativeTo(null);
-        this.setExtendedState(this.MAXIMIZED_BOTH);
+        //this.setExtendedState(this.MAXIMIZED_BOTH);
 
     }
 
