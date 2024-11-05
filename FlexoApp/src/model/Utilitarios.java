@@ -7,24 +7,15 @@ package model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JTable;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.PageSize;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.pdf.PdfPCell;
-import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.*;
 import java.awt.Desktop;
-import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -47,19 +38,17 @@ public class Utilitarios {
     public static void gerarPDF(JTable tabela, String nomeArquivo, List<String> colunasIncluidas, String titulo) throws FileNotFoundException, DocumentException, IOException {
         File arquivo = new File(nomeArquivo);
 
-        /*if (arquivo.exists()) {
-            System.out.println("O arquivo já existe. Escolha outro nome ou local.");
-            return;
-        }*/
         // Definindo o documento em modo paisagem
-        Document documento = new Document(PageSize.A4.rotate(), 10, 10, 10, 10);
-        PdfWriter.getInstance(documento, new FileOutputStream(nomeArquivo));
+        Document documento = new Document(PageSize.A4.rotate(), 10, 10, 10, 20); // Ajustar margens aqui
+        PdfWriter writer = PdfWriter.getInstance(documento, new FileOutputStream(nomeArquivo));
+        writer.setPageEvent(new PageNumberEvent());
         documento.open();
 
         PdfPTable pdfTable = new PdfPTable(colunasIncluidas.size());
         pdfTable.setWidthPercentage(100); // Define a largura da tabela para 100% da página
 
         // Definindo as fontes
+        com.lowagie.text.Font fonteTitulo = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 14);
         com.lowagie.text.Font fonteCabecalho = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 11);
         com.lowagie.text.Font fonteDados = FontFactory.getFont(FontFactory.HELVETICA, 9);
 
@@ -81,8 +70,10 @@ public class Utilitarios {
         }
 
         // Adicionando título e linha vazia
-        documento.add(new Paragraph(titulo, fonteCabecalho));
-        documento.add(new Paragraph(" ")); // Linha vazia
+        Paragraph tituloParagrafo = new Paragraph(titulo, fonteTitulo);
+        tituloParagrafo.setAlignment(Element.ALIGN_CENTER); // Centralizando o título 
+        documento.add(tituloParagrafo);
+        documento.add(new Paragraph(" ")); // Linha vazia 
         documento.add(pdfTable);
         documento.close();
 
@@ -95,9 +86,22 @@ public class Utilitarios {
         }
     }
 
+    static class PageNumberEvent extends PdfPageEventHelper {
+
+        @Override
+        public void onEndPage(PdfWriter writer, Document document) {
+            int pageNumber = writer.getPageNumber();
+            String footer = "Página " + pageNumber;
+            Phrase footerPhrase = new Phrase(footer, FontFactory.getFont(FontFactory.HELVETICA, 9));
+            ColumnText.showTextAligned(writer.getDirectContent(), Element.ALIGN_CENTER, footerPhrase,
+                    (document.right() - document.left()) / 2 + document.leftMargin(),
+                    document.bottom() - 10, 0); // Ajustar a margem inferior aqui
+        }
+    }
+
 // Método para abrir pasta
     public void abrirPasta(String caminhoPasta) {
-       try {
+        try {
             File pasta = new File(caminhoPasta);
             if (pasta.exists() && pasta.isDirectory()) {
                 Desktop desktop = Desktop.getDesktop();
@@ -109,8 +113,7 @@ public class Utilitarios {
             System.err.println("Erro ao abrir a pasta: " + e.getMessage());
             JOptionPane.showMessageDialog(null, "Erro ao abrir a pasta: " + e.getMessage());
         }
-    
-    }
 
+    }
 
 }
