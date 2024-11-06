@@ -233,7 +233,6 @@
           <Image iconType="3" name="/img/xml_32px.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Gerar XML"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>

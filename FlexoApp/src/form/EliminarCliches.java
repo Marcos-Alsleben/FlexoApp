@@ -193,7 +193,6 @@ public class EliminarCliches extends javax.swing.JPanel {
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/xml_32px.png"))); // NOI18N
         jButton4.setToolTipText("Gerar XML");
-        jButton4.setEnabled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -313,6 +312,21 @@ public class EliminarCliches extends javax.swing.JPanel {
                     dao.alterarProdutoCliche(obj);
 
                 }
+
+//Executa GerarXML
+                if (gx == null) {
+                    gx = new GerarXML();
+                    gx.setLocationRelativeTo(this);
+                    gx.InfoPadrao();
+                    gx.setVisible(true);
+                }
+                gx.InfoPadrao();
+                gx.setVisible(true);
+
+                // Limpa a tabela 
+                DefaultTableModel model = (DefaultTableModel) jT_eliminarCliches.getModel();
+                model.setRowCount(0);
+
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Erro ao atualizar banco de dados: " + e.getMessage());

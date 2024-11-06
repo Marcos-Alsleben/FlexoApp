@@ -29,7 +29,7 @@ import org.w3c.dom.Element;
 public class GerarXML extends javax.swing.JFrame {
 
 //Metodo Gerar XML  
-  public void gerarXML(List<ProdutoCliche> lista, String caminhoArquivo) {
+    public void gerarXML(List<ProdutoCliche> lista, String caminhoArquivo) {
         try {
             // Cria uma instância de DocumentBuilderFactory
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -68,13 +68,12 @@ public class GerarXML extends javax.swing.JFrame {
     }
 
 //Metodo Info padrao
-public void InfoPadrao(){
+    public void InfoPadrao() {
 
-txt_localPasta.setText("\\\\srv-fileserve/Arquivos/PRE-IMPRESSAO/Biblioteca CartonDruck/Automation/_Utilitarios");
-jButton2.requestFocus();
+        txt_localPasta.setText("\\\\srv-fileserve/Arquivos/PRE-IMPRESSAO/Biblioteca CartonDruck/Automation/_Utilitarios");
+        jButton2.requestFocus();
 
-}
-
+    }
 
     public GerarXML() {
         initComponents();
@@ -176,7 +175,7 @@ jButton2.requestFocus();
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        ProdutoClicheDAO dao = new ProdutoClicheDAO();
+       ProdutoClicheDAO dao = new ProdutoClicheDAO();
         List<ProdutoCliche> lista = dao.ListarProdutoClicheEliminado();
         String caminhoArquivo = txt_localPasta.getText();
         String nomeArquivo = "/ListaClichesEliminados.xml";
