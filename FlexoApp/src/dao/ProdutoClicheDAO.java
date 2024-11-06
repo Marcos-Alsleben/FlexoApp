@@ -226,7 +226,7 @@ public class ProdutoClicheDAO {
                     + "or cliente.nome LIKE ?\n"
                     + "or destinocliche.nome LIKE ?\n"
                     + "or tipocliche.nome LIKE ?\n"
-                    + "or status LIKE ? order by abs(rp_cliche) asc;";
+                    + "or status LIKE ? ORDER BY CASE WHEN status = 'ATIVO' THEN 1 ELSE 2 END, abs(rp_cliche) ASC;";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, pesquisa);
             stmt.setString(2, pesquisa);

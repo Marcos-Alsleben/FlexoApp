@@ -107,7 +107,7 @@ public class Utilitarios {
                 Desktop desktop = Desktop.getDesktop();
                 desktop.open(pasta);
             } else {
-                JOptionPane.showMessageDialog(null, "A pasta não existe.");
+                JOptionPane.showMessageDialog(null, "Não foi possível localizar a pasta: " + caminhoPasta);
             }
         } catch (IOException e) {
             System.err.println("Erro ao abrir a pasta: " + e.getMessage());
