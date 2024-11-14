@@ -377,4 +377,70 @@ public class ProdutoClicheDAO {
         }
     }
 
+//Metodo ContarClichesAtivos
+    public int ContarClichesAtivos(String status, String destino) {
+
+        try {
+            // Criar o comando sql, organizar e executar
+            String sql = "SELECT COUNT(*) AS QuantidadeClichesAtivos FROM ProdutoCliche pc "
+                    + "JOIN DestinoCliche dc ON pc.DestinoCliche_id = dc.id "
+                    + "WHERE pc.status = ? AND dc.nome LIKE ?;";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, status);
+            stmt.setString(2, "%" + destino + "%"); // Corrigido aqui
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int quantidade = rs.getInt("QuantidadeClichesAtivos");
+                con.close();
+                return quantidade;
+            } else {
+                con.close();
+                return 0;
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro:" + erro);
+            return -1;
+        }
+    }
+
+// Método para contar os clichês ativos para eliminar
+public int ContarClichesParaEliminar(String meses) {
+    // Verificação da conexão
+    if (con == null) {
+        throw new IllegalStateException("Conexão não pode ser nula.");
+    }
+
+    String sql = "SELECT COUNT(*) AS quantidade_cliches "
+            + "FROM flexo.produtocliche "
+            + "INNER JOIN flexo.cliente ON produtocliche.Cliente_id = cliente.id "
+            + "INNER JOIN flexo.destinocliche ON produtocliche.DestinoCliche_id = destinocliche.id "
+            + "INNER JOIN flexo.tipocliche ON produtocliche.TipoCliche_id = tipocliche.id "
+            + "INNER JOIN flexo.trabalhoprodutocliche ON produtocliche.id = trabalhoprodutocliche.ProdutoCliche_id "
+            + "WHERE produtocliche.status = 'ATIVO' "
+            + "AND trabalhoprodutocliche.trabalho_criado <= DATE_SUB(NOW(), INTERVAL ? MONTH) "
+            + "AND trabalhoprodutocliche.trabalho_criado = ( "
+            + "      SELECT MAX(trabalhoprodutocliche.trabalho_criado) "
+            + "      FROM flexo.trabalhoprodutocliche "
+            + "      WHERE trabalhoprodutocliche.ProdutoCliche_id = produtocliche.id "
+            + ") "
+            + "ORDER BY abs(rp_cliche) ASC;";
+
+    try (PreparedStatement stmt = con.prepareStatement(sql)) {
+        stmt.setString(1, meses);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt("quantidade_cliches");
+            } else {
+                return 0;
+            }
+        }
+    } catch (Exception erro) {
+        JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        return -1;
+    }
+}
+
+
 }

@@ -16,6 +16,7 @@ public class ConnectionFactory {
             //return DriverManager.getConnection("jdbc:mysql://10.0.72.61:3306/flexo?useSSL=false", "carton", "2574"); 
             //return DriverManager.getConnection("jdbc:mysql://localhost:3306/flexo?useSSL=false", "carton", "2574");
             //return DriverManager.getConnection("jdbc:mysql://localhost:3306/flexo", "carton", "2574");
+            //return DriverManager.getConnection("jdbc:mysql://localhost:3306/flexo?allowPublicKeyRetrieval=true&useSSL=false", "carton", "2574");
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro ao conectar com banco de dados: " + erro.getMessage());
             System.exit(1); // Encerra o programa

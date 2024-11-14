@@ -54,7 +54,7 @@ public class Principal extends javax.swing.JFrame {
         jP_ListarTrabalhos = new javax.swing.JPanel();
         listarTrabalhos1 = new form.ListarTrabalhos();
         jP_infoGeral = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        infoGeral1 = new form.InfoGeral();
         jP_EliminarCliche = new javax.swing.JPanel();
         eliminarCliches1 = new form.EliminarCliches();
 
@@ -192,24 +192,15 @@ public class Principal extends javax.swing.JFrame {
         jP_CardLayout.add(jP_ListarTrabalhos, "ListarTrabalhos");
         jP_ListarTrabalhos.getAccessibleContext().setAccessibleName("ListarTrabalhos");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setText("Informação Geral");
-
         javax.swing.GroupLayout jP_infoGeralLayout = new javax.swing.GroupLayout(jP_infoGeral);
         jP_infoGeral.setLayout(jP_infoGeralLayout);
         jP_infoGeralLayout.setHorizontalGroup(
             jP_infoGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_infoGeralLayout.createSequentialGroup()
-                .addContainerGap(415, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(390, Short.MAX_VALUE))
+            .addComponent(infoGeral1, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
         );
         jP_infoGeralLayout.setVerticalGroup(
             jP_infoGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_infoGeralLayout.createSequentialGroup()
-                .addContainerGap(197, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addContainerGap(238, Short.MAX_VALUE))
+            .addComponent(infoGeral1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, Short.MAX_VALUE)
         );
 
         jP_CardLayout.add(jP_infoGeral, "infoGeral");
@@ -273,6 +264,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         MostraCardLayout("infoGeral");
+        infoGeral1.ContaClichesparaEliminar();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -319,6 +311,7 @@ public class Principal extends javax.swing.JFrame {
 
         listarCliches1.PesquisarCliche();
         listarTrabalhos1.PesquisarTrabalhos();
+        infoGeral1.listarCbDestinoCliche();
 
     }//GEN-LAST:event_formWindowActivated
 
@@ -343,6 +336,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private form.EliminarCliches eliminarCliches1;
+    private form.InfoGeral infoGeral1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -351,7 +345,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jP_CardLayout;
     private javax.swing.JPanel jP_EliminarCliche;
     private javax.swing.JPanel jP_ListarCliche;
