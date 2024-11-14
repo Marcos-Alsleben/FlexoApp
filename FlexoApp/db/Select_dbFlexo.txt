@@ -1,0 +1,63 @@
+//Quantidade Clichês Ativo/Eliminados - Total/XL/KBA
+SELECT COUNT(*) AS QuantidadeClichesAtivos
+FROM ProdutoCliche pc
+JOIN DestinoCliche dc ON pc.DestinoCliche_id = dc.id
+WHERE pc.status = 'Ativo' AND dc.nome LIKE '%KBA%';
+
+//Quantidade clichês para ser eliminado Total
+SELECT COUNT(*) AS quantidade_cliches
+FROM flexo.produtocliche
+INNER JOIN flexo.cliente ON produtocliche.Cliente_id = cliente.id
+INNER JOIN flexo.destinocliche ON produtocliche.DestinoCliche_id = destinocliche.id
+INNER JOIN flexo.tipocliche ON produtocliche.TipoCliche_id = tipocliche.id
+INNER JOIN flexo.trabalhoprodutocliche ON produtocliche.id = trabalhoprodutocliche.ProdutoCliche_id
+WHERE produtocliche.status = 'ATIVO'
+AND trabalhoprodutocliche.trabalho_criado <= DATE_SUB(NOW(), INTERVAL '24' MONTH)
+AND trabalhoprodutocliche.trabalho_criado = (
+      SELECT MAX(trabalhoprodutocliche.trabalho_criado)
+      FROM flexo.trabalhoprodutocliche
+      WHERE trabalhoprodutocliche.ProdutoCliche_id = produtocliche.id
+)
+ORDER BY abs(rp_cliche) ASC;
+
+//Quantidade de clichês total cadastrado no ano/mês/maquina apontado
+SELECT COUNT(*) AS total_cliches_novos
+FROM TrabalhoProdutoCliche AS tpc
+JOIN ProdutoCliche AS pc ON tpc.ProdutoCliche_id = pc.id
+JOIN DestinoCliche AS dc ON pc.DestinoCliche_id = dc.id
+WHERE tpc.condicao_uso = 'novo' 
+  AND YEAR(tpc.trabalho_criado) = 2024 
+  AND MONTH(tpc.trabalho_criado) LIKE '%05%'
+  AND dc.nome LIKE '%KBA%';
+
+//Vida útil dos clichês ativos Total/Xl/KBA apontado
+
+
+//listar  os Anos de clichês cadastrados como ativo
+SELECT DISTINCT YEAR(pc.cliche_criado) AS ano
+FROM ProdutoCliche AS pc
+WHERE pc.status = 'Ativo'
+ORDER BY ano DESC;
+
+
+------------------------------------------------------------------------
+
+
+//Limpeza do banco de dados
+--Listar os dados que serão removidos
+SELECT pc.id, pc.rp_cliche, pc.status, pc.cliche_modificado
+FROM ProdutoCliche AS pc
+WHERE pc.status = 'eliminado' 
+AND pc.cliche_modificado < DATE_SUB(CURRENT_DATE, INTERVAL 5 YEAR);
+
+-- Exclui os registros da tabela TrabalhoProdutoCliche que fazem referência aos clichês eliminados e antigos
+DELETE tpc
+FROM TrabalhoProdutoCliche AS tpc
+JOIN ProdutoCliche AS pc ON tpc.ProdutoCliche_id = pc.id
+WHERE pc.status = 'eliminado'
+AND pc.cliche_modificado < DATE_SUB(CURRENT_DATE, INTERVAL 5 YEAR);
+
+-- Exclui os registros da tabela ProdutoCliche que estão eliminados e com mais de 5 anos
+DELETE FROM ProdutoCliche 
+WHERE status = 'eliminado' 
+AND cliche_modificado < DATE_SUB(CURRENT_DATE, INTERVAL 5 YEAR);
