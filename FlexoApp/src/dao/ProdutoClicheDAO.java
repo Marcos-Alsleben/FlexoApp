@@ -406,41 +406,109 @@ public class ProdutoClicheDAO {
     }
 
 // Método para contar os clichês ativos para eliminar
-public int ContarClichesParaEliminar(String meses) {
-    // Verificação da conexão
-    if (con == null) {
-        throw new IllegalStateException("Conexão não pode ser nula.");
+    public int ContarClichesParaEliminar(String meses) {
+        // Verificação da conexão
+        if (con == null) {
+            throw new IllegalStateException("Conexão não pode ser nula.");
+        }
+
+        String sql = "SELECT COUNT(*) AS quantidade_cliches "
+                + "FROM flexo.produtocliche "
+                + "INNER JOIN flexo.cliente ON produtocliche.Cliente_id = cliente.id "
+                + "INNER JOIN flexo.destinocliche ON produtocliche.DestinoCliche_id = destinocliche.id "
+                + "INNER JOIN flexo.tipocliche ON produtocliche.TipoCliche_id = tipocliche.id "
+                + "INNER JOIN flexo.trabalhoprodutocliche ON produtocliche.id = trabalhoprodutocliche.ProdutoCliche_id "
+                + "WHERE produtocliche.status = 'ATIVO' "
+                + "AND trabalhoprodutocliche.trabalho_criado <= DATE_SUB(NOW(), INTERVAL ? MONTH) "
+                + "AND trabalhoprodutocliche.trabalho_criado = ( "
+                + "      SELECT MAX(trabalhoprodutocliche.trabalho_criado) "
+                + "      FROM flexo.trabalhoprodutocliche "
+                + "      WHERE trabalhoprodutocliche.ProdutoCliche_id = produtocliche.id "
+                + ") "
+                + "ORDER BY abs(rp_cliche) ASC;";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, meses);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("quantidade_cliches");
+                } else {
+                    return 0;
+                }
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+            return -1;
+        }
     }
 
-    String sql = "SELECT COUNT(*) AS quantidade_cliches "
-            + "FROM flexo.produtocliche "
-            + "INNER JOIN flexo.cliente ON produtocliche.Cliente_id = cliente.id "
-            + "INNER JOIN flexo.destinocliche ON produtocliche.DestinoCliche_id = destinocliche.id "
-            + "INNER JOIN flexo.tipocliche ON produtocliche.TipoCliche_id = tipocliche.id "
-            + "INNER JOIN flexo.trabalhoprodutocliche ON produtocliche.id = trabalhoprodutocliche.ProdutoCliche_id "
-            + "WHERE produtocliche.status = 'ATIVO' "
-            + "AND trabalhoprodutocliche.trabalho_criado <= DATE_SUB(NOW(), INTERVAL ? MONTH) "
-            + "AND trabalhoprodutocliche.trabalho_criado = ( "
-            + "      SELECT MAX(trabalhoprodutocliche.trabalho_criado) "
-            + "      FROM flexo.trabalhoprodutocliche "
-            + "      WHERE trabalhoprodutocliche.ProdutoCliche_id = produtocliche.id "
-            + ") "
-            + "ORDER BY abs(rp_cliche) ASC;";
+//Metodo ListarAnosCliche
+    public List<ProdutoCliche> ListarAnosCliche() {
 
-    try (PreparedStatement stmt = con.prepareStatement(sql)) {
-        stmt.setString(1, meses);
-        try (ResultSet rs = stmt.executeQuery()) {
+        try {
+
+            // Passo 1 criar a lista
+            List<ProdutoCliche> lista = new ArrayList<>();
+
+            // Passo 2 criar o comando sql, organizar e executar
+            String sql = "SELECT DISTINCT YEAR(pc.cliche_criado) AS ano\n"
+                    + "FROM ProdutoCliche AS pc\n"
+                    + "WHERE pc.status = 'Ativo'\n"
+                    + "ORDER BY ano DESC;";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                ProdutoCliche obj = new ProdutoCliche();
+
+                obj.setAno(rs.getString("ano"));
+
+                lista.add(obj);
+
+            }
+            con.close();
+            return lista;
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro:" + erro);
+            return null;
+        }
+
+    }
+
+//Metodo ContarClichesAtivos
+    public int ContarClichesNovos(String ano, String mes, String destino) {
+
+        try {
+            // Criar o comando sql, organizar e executar
+            String sql = "SELECT COUNT(*) AS total_cliches_novos\n"
+                    + "FROM TrabalhoProdutoCliche AS tpc\n"
+                    + "JOIN ProdutoCliche AS pc ON tpc.ProdutoCliche_id = pc.id\n"
+                    + "JOIN DestinoCliche AS dc ON pc.DestinoCliche_id = dc.id\n"
+                    + "WHERE tpc.condicao_uso = 'novo' \n"
+                    + "  AND YEAR(tpc.trabalho_criado) = ? \n"
+                    + "  AND MONTH(tpc.trabalho_criado) LIKE ?\n"
+                    + "  AND dc.nome LIKE ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, ano);
+            stmt.setString(2, "%" + mes + "%");
+            stmt.setString(3, "%" + destino + "%");
+            ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
-                return rs.getInt("quantidade_cliches");
+                int quantidade = rs.getInt("total_cliches_novos");
+                con.close();
+                return quantidade;
             } else {
+                con.close();
                 return 0;
             }
-        }
-    } catch (Exception erro) {
-        JOptionPane.showMessageDialog(null, "Erro: " + erro);
-        return -1;
-    }
-}
 
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro:" + erro);
+            return -1;
+        }
+    }
 
 }

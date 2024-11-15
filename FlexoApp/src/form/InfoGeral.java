@@ -8,13 +8,25 @@ import dao.DestinoClicheDAO;
 import dao.ProdutoClicheDAO;
 import java.awt.event.ItemEvent;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import model.DestinoCliche;
+import model.ProdutoCliche;
 
 /**
  *
  * @author gmg
  */
 public class InfoGeral extends javax.swing.JPanel {
+
+//Metodo ResetInfoEliminar
+ public void ResetInfoEliminar() {
+
+txt_meses.setText("24");
+
+ContaClichesparaEliminar();
+}
+
+
 
 //Metodo listar DestinoCliche
     public void listarCbDestinoCliche() {
@@ -46,6 +58,98 @@ public class InfoGeral extends javax.swing.JPanel {
         txt_eliminar.setText(String.valueOf(quantidade));
     }
 
+    //Metodo AtualizarAnosCliches
+    public void AtualizarAnosCliches() {
+        ProdutoClicheDAO dao = new ProdutoClicheDAO();
+        List<ProdutoCliche> lista = dao.ListarAnosCliche();
+
+        cb_ano.removeAllItems();
+        //cb_ano.addItem("*");
+
+        for (ProdutoCliche c : lista) {
+            cb_ano.addItem(c.getAno());
+
+        }
+    }
+
+// Metodo pesquisar Cliches Novos
+    public void ContarClichesNovos() {
+        String mes;
+        String ano = cb_ano.getSelectedItem().toString();
+        String destino;
+
+        if ("TOTAL".equals(cb_mes.getSelectedItem())) {
+            mes = "%";
+        } else {
+            mes = cb_mes.getSelectedItem().toString();
+        }
+        switch (cb_mes.getSelectedItem().toString()) {
+
+            case "Janeiro":
+                mes = "01";
+                break;
+
+            case "Fevereiro":
+                mes = "02";
+                break;
+
+            case "Março":
+                mes = "03";
+                break;
+
+            case "Abril":
+                mes = "04";
+                break;
+
+            case "Maio":
+                mes = "05";
+                break;
+
+            case "Junho":
+                mes = "06";
+                break;
+
+            case "Julho":
+                mes = "07";
+                break;
+
+            case "Agosto":
+                mes = "08";
+                break;
+
+            case "Setembro":
+                mes = "09";
+                break;
+
+            case "Outubro":
+                mes = "10";
+                break;
+
+            case "Novembro":
+                mes = "11";
+                break;
+
+            case "Dezembro":
+                mes = "12";
+                break;
+
+            default:
+                break;
+        }
+
+        destino = cb_destino3.getSelectedItem().toString();
+
+        if (destino.equals("TOTAL")) {
+            destino = "%";
+        }
+
+        ProdutoClicheDAO dao = new ProdutoClicheDAO();
+        int quantidade = dao.ContarClichesNovos(ano, mes, destino);
+        txt_novos.setText(String.valueOf(quantidade));
+
+    }
+
+//Construtor
     public InfoGeral() {
         initComponents();
     }
@@ -79,8 +183,8 @@ public class InfoGeral extends javax.swing.JPanel {
         txt_novos = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         cb_destino3 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        cb_mes = new javax.swing.JComboBox<>();
+        cb_ano = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txt_vidaUtil = new javax.swing.JTextField();
@@ -223,6 +327,9 @@ public class InfoGeral extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_mesesKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_mesesKeyTyped(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -279,17 +386,32 @@ public class InfoGeral extends javax.swing.JPanel {
         jPanel9.setPreferredSize(new java.awt.Dimension(389, 34));
 
         cb_destino3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Maquina" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
-        jComboBox3.setToolTipText("");
-        jComboBox3.setAutoscrolls(true);
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+        cb_destino3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_destino3ItemStateChanged(evt);
             }
         });
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ano" }));
+        cb_mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TOTAL", "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+        cb_mes.setToolTipText("");
+        cb_mes.setAutoscrolls(true);
+        cb_mes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_mesItemStateChanged(evt);
+            }
+        });
+        cb_mes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_mesActionPerformed(evt);
+            }
+        });
+
+        cb_ano.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ano" }));
+        cb_ano.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_anoItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -297,9 +419,9 @@ public class InfoGeral extends javax.swing.JPanel {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cb_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cb_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(cb_destino3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -310,8 +432,8 @@ public class InfoGeral extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cb_destino3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -425,9 +547,9 @@ public class InfoGeral extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void cb_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_mesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_cb_mesActionPerformed
 
     private void cb_destino1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_destino1ItemStateChanged
 
@@ -469,13 +591,49 @@ public class InfoGeral extends javax.swing.JPanel {
 
     }//GEN-LAST:event_txt_mesesKeyReleased
 
+    private void txt_mesesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_mesesKeyTyped
+
+        String caracteres = "0987654321";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txt_mesesKeyTyped
+
+    private void cb_anoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_anoItemStateChanged
+
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+
+            ContarClichesNovos();
+        }
+
+    }//GEN-LAST:event_cb_anoItemStateChanged
+
+    private void cb_mesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_mesItemStateChanged
+
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+
+            ContarClichesNovos();
+        }
+
+    }//GEN-LAST:event_cb_mesItemStateChanged
+
+    private void cb_destino3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_destino3ItemStateChanged
+
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+
+            ContarClichesNovos();
+        }
+
+    }//GEN-LAST:event_cb_destino3ItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_ano;
     private javax.swing.JComboBox<String> cb_destino1;
     private javax.swing.JComboBox<String> cb_destino2;
     private javax.swing.JComboBox<String> cb_destino3;
     private javax.swing.JComboBox<String> cb_destino4;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox7;
+    private javax.swing.JComboBox<String> cb_mes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

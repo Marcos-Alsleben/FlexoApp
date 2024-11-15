@@ -23,6 +23,8 @@ public class ProdutoCliche {
     private String destinocliche;
     private String trabalho_criado;
 
+    private String ano;
+
 //Getter e Setter
 
     public int getId() {
@@ -137,6 +139,12 @@ public class ProdutoCliche {
         this.trabalho_criado = trabalho_criado;
     }
 
+    public String getAno() {
+        return ano;
+    }
 
-
+    public void setAno(String ano) {
+        this.ano = ano;
+    }
+   
 }
