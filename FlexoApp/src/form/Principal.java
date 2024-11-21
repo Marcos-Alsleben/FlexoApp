@@ -311,6 +311,7 @@ public class Principal extends javax.swing.JFrame {
 
         listarCliches1.PesquisarCliche();
         listarTrabalhos1.PesquisarTrabalhos();
+        infoGeral1.PesquisarVidaUtilCliche();
         infoGeral1.listarCbDestinoCliche();
         infoGeral1.listarCbTipoCliche();
         infoGeral1.AtualizarAnosCliches();

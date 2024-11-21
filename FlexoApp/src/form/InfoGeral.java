@@ -162,6 +162,22 @@ public class InfoGeral extends javax.swing.JPanel {
 
     }
 
+//Metodo PesquisarVidaUtilCliche
+    public void PesquisarVidaUtilCliche() {
+
+        String destino = cb_destino4.getSelectedItem().toString();
+        String tipoCliche = cb_tipoCliche.getSelectedItem().toString();
+
+        if (destino.equals("TOTAL")) {
+            destino = "";
+        }
+
+        ProdutoClicheDAO dao = new ProdutoClicheDAO();
+        int quantidade = dao.ContarVidaUtilCliches(tipoCliche, destino);
+        txt_vidaUtil.setText(String.valueOf(quantidade));
+
+    }
+
     //Construtor
     public InfoGeral() {
         initComponents();
@@ -661,16 +677,10 @@ public class InfoGeral extends javax.swing.JPanel {
 
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
 
-            if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-                String destino = cb_destino4.getSelectedItem().toString();
-                String tipoCliche = cb_tipoCliche.getSelectedItem().toString();
-
-                ProdutoClicheDAO dao = new ProdutoClicheDAO();
-                int quantidade = dao.ContarVidaUtilCliches(tipoCliche, destino);
-                txt_vidaUtil.setText(String.valueOf(quantidade));
-            }
+            PesquisarVidaUtilCliche();
 
         }
+
 
     }//GEN-LAST:event_cb_tipoClicheItemStateChanged
 
@@ -678,20 +688,9 @@ public class InfoGeral extends javax.swing.JPanel {
 
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
 
-            if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-                String destino = cb_destino4.getSelectedItem().toString();
-                String tipoCliche = cb_tipoCliche.getSelectedItem().toString();
-
-                if (destino.equals("TOTAL")) {
-                    destino = "";
-                }
-
-                ProdutoClicheDAO dao = new ProdutoClicheDAO();
-                int quantidade = dao.ContarVidaUtilCliches(tipoCliche, destino);
-                txt_vidaUtil.setText(String.valueOf(quantidade));
-            }
-
+            PesquisarVidaUtilCliche();
         }
+
 
     }//GEN-LAST:event_cb_destino4ItemStateChanged
 
