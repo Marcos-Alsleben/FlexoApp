@@ -6,11 +6,13 @@ package form;
 
 import dao.DestinoClicheDAO;
 import dao.ProdutoClicheDAO;
+import dao.TipoClicheDAO;
 import java.awt.event.ItemEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.DestinoCliche;
 import model.ProdutoCliche;
+import model.TipoCliche;
 
 /**
  *
@@ -19,16 +21,14 @@ import model.ProdutoCliche;
 public class InfoGeral extends javax.swing.JPanel {
 
 //Metodo ResetInfoEliminar
- public void ResetInfoEliminar() {
+    public void ResetInfoEliminar() {
 
-txt_meses.setText("24");
+        txt_meses.setText("24");
 
-ContaClichesparaEliminar();
-}
+        ContaClichesparaEliminar();
+    }
 
-
-
-//Metodo listar DestinoCliche
+    //Metodo listar CbDestinoCliche
     public void listarCbDestinoCliche() {
         DestinoClicheDAO dao = new DestinoClicheDAO();
         List<DestinoCliche> lista = dao.listarDestinoCliche();
@@ -51,7 +51,20 @@ ContaClichesparaEliminar();
         }
     }
 
-//Metodo ContaClichesparaEliminar
+    //Metodo listar CbTipoCliche
+    public void listarCbTipoCliche() {
+        TipoClicheDAO dao = new TipoClicheDAO();
+        List<TipoCliche> lista = dao.listarTipoCliche();
+
+        cb_tipoCliche.removeAllItems();
+
+        for (TipoCliche c : lista) {
+            cb_tipoCliche.addItem(c.getNome());
+
+        }
+    }
+
+    //Metodo ContaClichesparaEliminar
     public void ContaClichesparaEliminar() {
         ProdutoClicheDAO dao = new ProdutoClicheDAO();
         int quantidade = dao.ContarClichesParaEliminar(txt_meses.getText());
@@ -72,7 +85,7 @@ ContaClichesparaEliminar();
         }
     }
 
-// Metodo pesquisar Cliches Novos
+    // Metodo pesquisar Cliches Novos
     public void ContarClichesNovos() {
         String mes;
         String ano = cb_ano.getSelectedItem().toString();
@@ -149,7 +162,7 @@ ContaClichesparaEliminar();
 
     }
 
-//Construtor
+    //Construtor
     public InfoGeral() {
         initComponents();
     }
@@ -190,6 +203,7 @@ ContaClichesparaEliminar();
         txt_vidaUtil = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         cb_destino4 = new javax.swing.JComboBox<>();
+        cb_tipoCliche = new javax.swing.JComboBox<>();
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         jPanel2.setPreferredSize(new java.awt.Dimension(526, 70));
@@ -474,21 +488,37 @@ ContaClichesparaEliminar();
         jPanel10.setPreferredSize(new java.awt.Dimension(389, 34));
 
         cb_destino4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Maquina" }));
+        cb_destino4.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_destino4ItemStateChanged(evt);
+            }
+        });
+
+        cb_tipoCliche.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TipoCliche" }));
+        cb_tipoCliche.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_tipoClicheItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(cb_destino4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(142, 142, 142))
+                .addGap(100, 100, 100)
+                .addComponent(cb_tipoCliche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cb_destino4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_destino4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_tipoCliche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -627,6 +657,44 @@ ContaClichesparaEliminar();
 
     }//GEN-LAST:event_cb_destino3ItemStateChanged
 
+    private void cb_tipoClicheItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_tipoClicheItemStateChanged
+
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+
+            if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+                String destino = cb_destino4.getSelectedItem().toString();
+                String tipoCliche = cb_tipoCliche.getSelectedItem().toString();
+
+                ProdutoClicheDAO dao = new ProdutoClicheDAO();
+                int quantidade = dao.ContarVidaUtilCliches(tipoCliche, destino);
+                txt_vidaUtil.setText(String.valueOf(quantidade));
+            }
+
+        }
+
+    }//GEN-LAST:event_cb_tipoClicheItemStateChanged
+
+    private void cb_destino4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_destino4ItemStateChanged
+
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+
+            if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+                String destino = cb_destino4.getSelectedItem().toString();
+                String tipoCliche = cb_tipoCliche.getSelectedItem().toString();
+
+                if (destino.equals("TOTAL")) {
+                    destino = "";
+                }
+
+                ProdutoClicheDAO dao = new ProdutoClicheDAO();
+                int quantidade = dao.ContarVidaUtilCliches(tipoCliche, destino);
+                txt_vidaUtil.setText(String.valueOf(quantidade));
+            }
+
+        }
+
+    }//GEN-LAST:event_cb_destino4ItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_ano;
     private javax.swing.JComboBox<String> cb_destino1;
@@ -634,6 +702,7 @@ ContaClichesparaEliminar();
     private javax.swing.JComboBox<String> cb_destino3;
     private javax.swing.JComboBox<String> cb_destino4;
     private javax.swing.JComboBox<String> cb_mes;
+    private javax.swing.JComboBox<String> cb_tipoCliche;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -511,4 +511,128 @@ public class ProdutoClicheDAO {
         }
     }
 
+//Metodo ContarVidaUtilCliches
+    public int ContarVidaUtilCliches(String tipoCliche, String destino) {
+
+        try {
+            // Criar o comando sql, organizar e executar
+            String sql = "-- Contar quantidade de \"NOVO\" por rp_cliche e filtrar os que têm mais de um \"NOVO\"\n"
+                    + "WITH novo_counts AS (\n"
+                    + "    SELECT \n"
+                    + "        p.rp_cliche,\n"
+                    + "        COUNT(*) AS quantidade_novo\n"
+                    + "    FROM \n"
+                    + "        ProdutoCliche p\n"
+                    + "    JOIN \n"
+                    + "        TrabalhoProdutoCliche t ON p.id = t.ProdutoCliche_id\n"
+                    + "    JOIN \n"
+                    + "        DestinoCliche d ON p.DestinoCliche_id = d.id\n"
+                    + "    JOIN \n"
+                    + "        TipoCliche tc ON p.TipoCliche_id = tc.id\n"
+                    + "    WHERE \n"
+                    + "        t.condicao_uso = 'NOVO' AND \n"
+                    + "        d.nome LIKE ? AND \n"
+                    + "        tc.nome LIKE ? \n"
+                    + "    GROUP BY \n"
+                    + "        p.rp_cliche\n"
+                    + "    HAVING \n"
+                    + "        COUNT(*) > 1\n"
+                    + "),\n"
+                    + "\n"
+                    + "-- Preparar a contagem dos serviços entre os ciclos \"NOVO\"\n"
+                    + "validos AS (\n"
+                    + "    SELECT \n"
+                    + "        p.rp_cliche,\n"
+                    + "        t.condicao_uso,\n"
+                    + "        t.trabalho_criado,\n"
+                    + "        @num := IF(@grupo = p.rp_cliche, @num + (t.condicao_uso = 'NOVO'), 1) AS quantidade_novo,\n"
+                    + "        @grupo := p.rp_cliche,\n"
+                    + "        COUNT(*) OVER (PARTITION BY p.rp_cliche, @num) - 1 AS count_servicos\n"
+                    + "    FROM \n"
+                    + "        ProdutoCliche p\n"
+                    + "    JOIN \n"
+                    + "        TrabalhoProdutoCliche t ON p.id = t.ProdutoCliche_id\n"
+                    + "    JOIN \n"
+                    + "        DestinoCliche d ON p.DestinoCliche_id = d.id\n"
+                    + "    JOIN \n"
+                    + "        TipoCliche tc ON p.TipoCliche_id = tc.id,\n"
+                    + "        (SELECT @num := 0, @grupo := '') AS vars\n"
+                    + "    WHERE \n"
+                    + "        d.nome LIKE ? AND \n"
+                    + "        tc.nome LIKE ? \n"
+                    + "    ORDER BY \n"
+                    + "        p.rp_cliche, t.trabalho_criado\n"
+                    + "),\n"
+                    + "\n"
+                    + "-- Contar os registros válidos entre os ciclos \"NOVO\"\n"
+                    + "contagens AS (\n"
+                    + "    SELECT\n"
+                    + "        subquery.rp_cliche,\n"
+                    + "        MAX(CASE \n"
+                    + "            WHEN subquery.quantidade_novo = 2 THEN subquery.count_servicos\n"
+                    + "            ELSE 0 \n"
+                    + "        END) AS registros_entre_primeiro_e_segundo_novo,\n"
+                    + "        MAX(CASE \n"
+                    + "            WHEN subquery.quantidade_novo = 3 THEN subquery.count_servicos\n"
+                    + "            ELSE 0 \n"
+                    + "        END) AS registros_entre_segundo_e_terceiro_novo,\n"
+                    + "        MAX(CASE \n"
+                    + "            WHEN subquery.quantidade_novo = 4 THEN subquery.count_servicos\n"
+                    + "            ELSE 0 \n"
+                    + "        END) AS registros_entre_terceiro_e_quarto_novo\n"
+                    + "    FROM validos AS subquery\n"
+                    + "    WHERE subquery.rp_cliche IN (SELECT rp_cliche FROM novo_counts)\n"
+                    + "    GROUP BY \n"
+                    + "        subquery.rp_cliche\n"
+                    + ")\n"
+                    + "\n"
+                    + "-- Calcular a média dos registros válidos ou retornar o único valor válido arredondado para cima\n"
+                    + "SELECT \n"
+                    + "    CASE \n"
+                    + "        WHEN COUNT(*) > 1 THEN CEIL(AVG(registros_validos))\n"
+                    + "        ELSE CEIL(MAX(registros_validos))\n"
+                    + "    END AS media_registros\n"
+                    + "FROM (\n"
+                    + "    SELECT \n"
+                    + "        registros_entre_primeiro_e_segundo_novo AS registros_validos\n"
+                    + "    FROM contagens\n"
+                    + "    WHERE registros_entre_primeiro_e_segundo_novo > 0\n"
+                    + "    \n"
+                    + "    UNION ALL\n"
+                    + "    \n"
+                    + "    SELECT \n"
+                    + "        registros_entre_segundo_e_terceiro_novo AS registros_validos\n"
+                    + "    FROM contagens\n"
+                    + "    WHERE registros_entre_segundo_e_terceiro_novo > 0\n"
+                    + "    \n"
+                    + "    UNION ALL\n"
+                    + "    \n"
+                    + "    SELECT \n"
+                    + "        registros_entre_terceiro_e_quarto_novo AS registros_validos\n"
+                    + "    FROM contagens\n"
+                    + "    WHERE registros_entre_terceiro_e_quarto_novo > 0\n"
+                    + ") AS validos_registros;";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, "%" + destino + "%");
+            stmt.setString(2, "%" + tipoCliche + "%");
+            stmt.setString(3, "%" + destino + "%");
+            stmt.setString(4, "%" + tipoCliche + "%");
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int quantidade = rs.getInt("media_registros");
+                con.close();
+                return quantidade;
+            } else {
+                con.close();
+                return 0;
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro:" + erro);
+            return -1;
+        }
+    }
+
+
 }
