@@ -25,7 +25,7 @@ public class AlterarCliche extends javax.swing.JFrame {
 
 //Metodo Limpar Campos
     public void LimparCampos() {
-        
+
         txt_rp.setText("");
         txt_faca.setText("");
         txt_ft.setText("");
@@ -35,83 +35,83 @@ public class AlterarCliche extends javax.swing.JFrame {
         cb_status.setSelectedIndex(0);
         txt_data.setText("");
         txt_idCliche.setText("");
-        
+
     }
 
     //Metodo Atualiza ID
     public void AtualizarId(String lc) {
-        
+
         txt_idCliche.setText(lc);
-        
+
     }
 
 //Metodo Atualiza RP
     public void AtualizarRp(String lc) {
-        
+
         txt_rp.setText(lc);
-        
+
     }
 
 //Metodo Atualiza Faca
     public void AtualizarFaca(String lc) {
-        
+
         txt_faca.setText(lc);
-        
+
     }
 
 //Metodo Atualiza FT
     public void AtualizarFt(String lc) {
-        
+
         txt_ft.setText(lc);
-        
+
     }
 
 //Metodo Atualiza Cliente
     public void AtualizarCliente(String lc) {
-        
+
         cb_cliente.setSelectedItem(lc);
-        
+
     }
 
 //Metodo Atualiza TipoCliche
     public void AtualizarTipoCliche(String lc) {
-        
+
         cb_tipocliche.setSelectedItem(lc);
-        
+
     }
 
 //Metodo Atualiza Destino
     public void AtualizarDestino(String lc) {
-        
+
         cb_destino.setSelectedItem(lc);
-        
+
     }
 
 //Metodo Atualiza Status
     public void AtualizarStatus(String lc) {
-        
+
         cb_status.setSelectedItem(lc);
-        
+
     }
 
 //Metodo Atualiza data
     public void AtualizarData(String lc) {
-        
+
         txt_data.setText(lc);
-        
+
     }
 
 //Metodo Atualiza cb_cliente
     public void AtualizarcbClientes() {
         ClienteDAO dao = new ClienteDAO();
         List<Cliente> lista = dao.listarCliente();
-        
+
         cb_cliente.removeAllItems();
         cb_cliente.addItem("");
-        
+
         for (Cliente c : lista) {
             cb_cliente.addItem(c.getNome());
-            
+
         }
     }
 
@@ -119,13 +119,13 @@ public class AlterarCliche extends javax.swing.JFrame {
     public void AtualizarcbTipoCliche() {
         TipoClicheDAO dao = new TipoClicheDAO();
         List<TipoCliche> lista = dao.listarTipoCliche();
-        
+
         cb_tipocliche.removeAllItems();
         cb_tipocliche.addItem("");
-        
+
         for (TipoCliche c : lista) {
             cb_tipocliche.addItem(c.getNome());
-            
+
         }
     }
 
@@ -133,26 +133,26 @@ public class AlterarCliche extends javax.swing.JFrame {
     public void AtualizarcbDestino() {
         DestinoClicheDAO dao = new DestinoClicheDAO();
         List<DestinoCliche> lista = dao.listarDestinoCliche();
-        
+
         cb_destino.removeAllItems();
         cb_destino.addItem("");
-        
+
         for (DestinoCliche c : lista) {
             cb_destino.addItem(c.getNome());
-            
+
         }
     }
 
 //Metodo Aponta id Cliente
     public int ApontaIdCliente() {
         int id = 0;
-        
+
         ClienteDAO dao = new ClienteDAO();
         List<Cliente> lista = dao.RetornaId(cb_cliente.getSelectedItem().toString());
-        
+
         for (Cliente c : lista) {
             id = c.getId();
-            
+
         }
         return id;
     }
@@ -160,13 +160,13 @@ public class AlterarCliche extends javax.swing.JFrame {
     //Metodo Aponta  id DestinoCliche
     public int ApontaIdDestinoCliente() {
         int id = 0;
-        
+
         DestinoClicheDAO dao = new DestinoClicheDAO();
         List<DestinoCliche> lista = dao.RetornaId(cb_destino.getSelectedItem().toString());
-        
+
         for (DestinoCliche c : lista) {
             id = c.getId();
-            
+
         }
         return id;
     }
@@ -174,17 +174,17 @@ public class AlterarCliche extends javax.swing.JFrame {
 //Metodo Aponta  id TipoCliche
     public int ApontaIdTipoCliche() {
         int id = 0;
-        
+
         TipoClicheDAO dao = new TipoClicheDAO();
         List<TipoCliche> lista = dao.RetornaId(cb_tipocliche.getSelectedItem().toString());
-        
+
         for (TipoCliche c : lista) {
             id = c.getId();
-            
+
         }
         return id;
     }
-    
+
     public AlterarCliche() {
         initComponents();
         setIconImage();
@@ -295,7 +295,6 @@ public class AlterarCliche extends javax.swing.JFrame {
         });
 
         cb_status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ATIVO", "ELIMINADO" }));
-        cb_status.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel7.setText(" STATUS");
@@ -320,12 +319,7 @@ public class AlterarCliche extends javax.swing.JFrame {
                     .addComponent(cb_tipocliche, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_ft, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txt_faca)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txt_data)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jC_data))
                     .addComponent(cb_cliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cb_status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -335,7 +329,12 @@ public class AlterarCliche extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel7))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txt_data)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jC_data))
+                    .addComponent(cb_status, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -388,7 +387,7 @@ public class AlterarCliche extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_idClicheActionPerformed
 
     private void txt_rpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_rpKeyTyped
-        
+
         String caracteres = "0987654321.";
         if (evt.getKeyChar() == ',') {
             evt.setKeyChar('.');
@@ -399,10 +398,10 @@ public class AlterarCliche extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_rpKeyTyped
 
     private void txt_facaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_facaKeyTyped
-        
+
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321";
         char keyChar = evt.getKeyChar();
-        
+
         if (Character.isLetter(keyChar)) {
             keyChar = Character.toUpperCase(keyChar);
             evt.setKeyChar(keyChar);
@@ -412,10 +411,10 @@ public class AlterarCliche extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_facaKeyTyped
 
     private void txt_ftKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ftKeyTyped
-        
+
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321.-";
         char keyChar = evt.getKeyChar();
-        
+
         if (keyChar == ',') {
             evt.setKeyChar('.');
         } else if (Character.isLetter(keyChar)) {
@@ -427,34 +426,34 @@ public class AlterarCliche extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ftKeyTyped
 
     private void jC_dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jC_dataActionPerformed
-        
+
         txt_data.setEnabled(jC_data.isSelected());
     }//GEN-LAST:event_jC_dataActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         String rp = txt_rp.getText();
         int resposta = JOptionPane.showConfirmDialog(null, "Excluir RP " + rp + "?", "", JOptionPane.YES_NO_OPTION);
-        
+
         if (resposta == 0) {
             ProdutoCliche obj = new ProdutoCliche();
-            
+
             obj.setId(Integer.parseInt(txt_idCliche.getText()));
-            
+
             ProdutoClicheDAO dao = new ProdutoClicheDAO();
-            
+
             dao.excluirProdutoCliche(obj);
-            
+
             LimparCampos();
             this.dispose();
-            
+
         }
-        
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         if ("".equals(txt_rp.getText())) {
             JOptionPane.showMessageDialog(null, "RP Inválido!", "", 2);
         } else {
@@ -482,16 +481,16 @@ public class AlterarCliche extends javax.swing.JFrame {
                                         if ("".equals(txt_data.getText())) {
                                             JOptionPane.showMessageDialog(null, "Data Inválido!", "", 2);
                                         } else {
-                                            
+
                                             Utilitarios dh = new Utilitarios();
                                             String dataHora = dh.DH();
-                                            
+
                                             int idcliente = ApontaIdCliente();
                                             int idtipocliche = ApontaIdTipoCliche();
                                             int iddestinocliche = ApontaIdDestinoCliente();
-                                            
+
                                             ProdutoCliche obj = new ProdutoCliche();
-                                            
+
                                             obj.setRp_cliche(txt_rp.getText());
                                             obj.setFaca(txt_faca.getText());
                                             obj.setFt(txt_ft.getText());
@@ -502,14 +501,14 @@ public class AlterarCliche extends javax.swing.JFrame {
                                             obj.setCliche_criado(txt_data.getText());
                                             obj.setCliche_modificado(dataHora);
                                             obj.setId(Integer.parseInt(txt_idCliche.getText()));
-                                            
+
                                             ProdutoClicheDAO dao = new ProdutoClicheDAO();
                                             dao.alterarProdutoCliche(obj);
-                                            
+
                                             LimparCampos();
                                             jC_data.setSelected(false);
                                             this.dispose();
-                                            
+
                                         }
                                     }
                                 }
@@ -556,7 +555,7 @@ public class AlterarCliche extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void setIconImage() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Alterar_32px.png")));
     }
