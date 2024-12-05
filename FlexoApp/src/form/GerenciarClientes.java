@@ -258,7 +258,7 @@ public class GerenciarClientes extends javax.swing.JFrame {
         btn_excluirCliente.setEnabled(false);
         btn_limparCliente.setEnabled(false);
 
-        //AtualizarcbClientes();
+        listarClientes();
     }//GEN-LAST:event_btn_novoClienteActionPerformed
 
     private void btn_alterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarClienteActionPerformed
@@ -284,7 +284,7 @@ public class GerenciarClientes extends javax.swing.JFrame {
         btn_excluirCliente.setEnabled(false);
         btn_limparCliente.setEnabled(false);
 
-        //AtualizarcbClientes();
+        listarClientes();
     }//GEN-LAST:event_btn_alterarClienteActionPerformed
 
     private void btn_excluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirClienteActionPerformed
@@ -307,7 +307,7 @@ public class GerenciarClientes extends javax.swing.JFrame {
         btn_excluirCliente.setEnabled(false);
         btn_limparCliente.setEnabled(false);
 
-        //AtualizarcbClientes();
+        listarClientes();
     }//GEN-LAST:event_btn_excluirClienteActionPerformed
 
     private void btn_limparClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limparClienteActionPerformed

@@ -272,7 +272,7 @@ public class GerenciarDestinoCliche extends javax.swing.JFrame {
         btn_excluirDestinoCliche.setEnabled(false);
         btn_limparDestinoCliche.setEnabled(false);
 
-        //AtualizarcbClientes();
+        listarDestinoCliche();
     }//GEN-LAST:event_btn_novoDestinoClicheActionPerformed
 
     private void btn_alterarDestinoClicheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarDestinoClicheActionPerformed
@@ -298,7 +298,7 @@ public class GerenciarDestinoCliche extends javax.swing.JFrame {
         btn_excluirDestinoCliche.setEnabled(false);
         btn_limparDestinoCliche.setEnabled(false);
 
-        //AtualizarcbClientes();
+        listarDestinoCliche();
     }//GEN-LAST:event_btn_alterarDestinoClicheActionPerformed
 
     private void btn_excluirDestinoClicheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirDestinoClicheActionPerformed
@@ -321,7 +321,7 @@ public class GerenciarDestinoCliche extends javax.swing.JFrame {
         btn_excluirDestinoCliche.setEnabled(false);
         btn_limparDestinoCliche.setEnabled(false);
 
-        //AtualizarcbClientes();
+        listarDestinoCliche();
     }//GEN-LAST:event_btn_excluirDestinoClicheActionPerformed
 
     private void btn_limparDestinoClicheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limparDestinoClicheActionPerformed

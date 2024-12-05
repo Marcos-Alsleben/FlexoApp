@@ -270,7 +270,7 @@ public class GerenciarTipoCliche extends javax.swing.JFrame {
         btn_excluirTipoCliche.setEnabled(false);
         btn_limparTipoCliche.setEnabled(false);
 
-        //AtualizarcbClientes();
+         listarTipoCliche();
     }//GEN-LAST:event_btn_excluirTipoClicheActionPerformed
 
     private void btn_alterarTipoClicheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarTipoClicheActionPerformed
@@ -296,7 +296,7 @@ public class GerenciarTipoCliche extends javax.swing.JFrame {
         btn_excluirTipoCliche.setEnabled(false);
         btn_limparTipoCliche.setEnabled(false);
 
-        //AtualizarcbClientes();
+         listarTipoCliche();
     }//GEN-LAST:event_btn_alterarTipoClicheActionPerformed
 
     private void btn_novoTipoClicheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoTipoClicheActionPerformed
@@ -321,7 +321,7 @@ public class GerenciarTipoCliche extends javax.swing.JFrame {
         btn_excluirTipoCliche.setEnabled(false);
         btn_limparTipoCliche.setEnabled(false);
 
-        //AtualizarcbClientes();
+         listarTipoCliche();
     }//GEN-LAST:event_btn_novoTipoClicheActionPerformed
 
     private void txt_nomeTipoClicheKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeTipoClicheKeyPressed
