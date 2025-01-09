@@ -23,6 +23,8 @@ import model.Utilitarios;
  */
 public class AlterarCliche extends javax.swing.JFrame {
 
+    private GerarXML gx;
+
 //Metodo Limpar Campos
     public void LimparCampos() {
 
@@ -508,6 +510,16 @@ public class AlterarCliche extends javax.swing.JFrame {
                                             LimparCampos();
                                             jC_data.setSelected(false);
                                             this.dispose();
+
+                                            //Executa GerarXML
+                                            if (gx == null) {
+                                                gx = new GerarXML();
+                                                gx.setLocationRelativeTo(this);
+                                                gx.InfoPadrao();
+                                                gx.setVisible(true);
+                                            }
+                                            gx.InfoPadrao();
+                                            gx.setVisible(true);
 
                                         }
                                     }
