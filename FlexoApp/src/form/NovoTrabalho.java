@@ -162,6 +162,9 @@ public class NovoTrabalho extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_pesquisaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_pesquisaKeyTyped(evt);
+            }
         });
 
         txt_idcliche.setEnabled(false);
@@ -335,6 +338,17 @@ public class NovoTrabalho extends javax.swing.JFrame {
         PesquisarProdutoCliche();
 
     }//GEN-LAST:event_txt_pesquisaKeyReleased
+
+    private void txt_pesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_pesquisaKeyTyped
+
+        String caracteres = "0987654321.";
+        if (evt.getKeyChar() == ',') {
+            evt.setKeyChar('.');
+        } else if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txt_pesquisaKeyTyped
 
     /**
      * @param args the command line arguments

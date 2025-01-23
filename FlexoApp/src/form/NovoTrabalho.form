@@ -241,6 +241,7 @@
         <Component class="javax.swing.JTextField" name="txt_pesquisa">
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_pesquisaKeyReleased"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_pesquisaKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_idcliche">
