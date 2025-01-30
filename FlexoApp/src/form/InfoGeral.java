@@ -9,6 +9,7 @@ import dao.ProdutoClicheDAO;
 import dao.TipoClicheDAO;
 import java.awt.event.ItemEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.DestinoCliche;
 import model.ProdutoCliche;
@@ -87,51 +88,50 @@ public class InfoGeral extends javax.swing.JPanel {
 
     // Metodo pesquisar Cliches Novos
     public void ContarClichesNovos() {
-        String mes;
+        String mes = cb_mes.getSelectedItem().toString();;
         String ano = cb_ano.getSelectedItem().toString();
         String destino;
 
-        if ("TOTAL".equals(cb_mes.getSelectedItem())) {
-            mes = "%";
-        } else {
-            mes = cb_mes.getSelectedItem().toString();
-        }
         switch (cb_mes.getSelectedItem().toString()) {
 
+            case "TOTAL":
+                mes = "%";
+                break;
+
             case "Janeiro":
-                mes = "01";
+                mes = "1";
                 break;
 
             case "Fevereiro":
-                mes = "02";
+                mes = "2";
                 break;
 
             case "Março":
-                mes = "03";
+                mes = "3";
                 break;
 
             case "Abril":
-                mes = "04";
+                mes = "4";
                 break;
 
             case "Maio":
-                mes = "05";
+                mes = "5";
                 break;
 
             case "Junho":
-                mes = "06";
+                mes = "6";
                 break;
 
             case "Julho":
-                mes = "07";
+                mes = "7";
                 break;
 
             case "Agosto":
-                mes = "08";
+                mes = "8";
                 break;
 
             case "Setembro":
-                mes = "09";
+                mes = "9";
                 break;
 
             case "Outubro":
