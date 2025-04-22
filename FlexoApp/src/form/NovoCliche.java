@@ -358,11 +358,21 @@ public class NovoCliche extends javax.swing.JFrame {
 
     private void txt_rpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_rpKeyTyped
 
-        String caracteres = "0987654321.";
-        if (evt.getKeyChar() == ',') {
-            evt.setKeyChar('.');
-        } else if (!caracteres.contains(evt.getKeyChar() + "")) {
-            evt.consume();
+        String numeros = "0987654321"; // Aceita números
+        char tecla = evt.getKeyChar();
+
+        if (tecla == ',') {
+            evt.setKeyChar('.'); // Substitui vírgula por ponto
+        } else if (numeros.contains(tecla + "")) {
+            // Permite números
+        } else if (Character.toUpperCase(tecla) == 'P') {
+            txt_rp.setText(txt_rp.getText() + "-P"); // Adiciona "-P"
+            evt.consume(); // Impede que o caractere original seja inserido
+        } else if (Character.toUpperCase(tecla) == 'S') {
+            txt_rp.setText(txt_rp.getText() + "-S"); // Adiciona "-S"
+            evt.consume(); // Impede que o caractere original seja inserido
+        } else {
+            evt.consume(); // Ignora caracteres inválidos
         }
 
 
