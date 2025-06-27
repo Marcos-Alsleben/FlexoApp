@@ -358,7 +358,7 @@ public class NovoCliche extends javax.swing.JFrame {
 
     private void txt_rpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_rpKeyTyped
 
-        String numeros = "0987654321"; // Aceita números
+        String numeros = "0987654321."; // Aceita números
         char tecla = evt.getKeyChar();
 
         if (tecla == ',') {
