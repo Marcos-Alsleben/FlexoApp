@@ -361,7 +361,7 @@ public class GerenciarClientes extends javax.swing.JFrame {
     private void txt_nomeClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeClienteKeyTyped
       
 
-String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321-_";
+String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321-_ ";
         char keyChar = evt.getKeyChar();
 
          if (Character.isLetter(keyChar)) {

@@ -362,7 +362,7 @@ public class GerenciarDestinoCliche extends javax.swing.JFrame {
 
     private void txt_nomeDestinoClicheKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nomeDestinoClicheKeyTyped
   
- String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321";
+ String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321 ";
         char keyChar = evt.getKeyChar();
 
         if (Character.isLetter(keyChar)) {

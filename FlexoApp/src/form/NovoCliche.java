@@ -217,6 +217,12 @@ public class NovoCliche extends javax.swing.JFrame {
 
         txt_data.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        cb_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_clienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -400,6 +406,10 @@ public class NovoCliche extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_txt_facaKeyTyped
+
+    private void cb_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_clienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_clienteActionPerformed
 
     /**
      * @param args the command line arguments

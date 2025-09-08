@@ -47,56 +47,56 @@ public class AlterarCliche extends javax.swing.JFrame {
 
     }
 
-//Metodo Atualiza RP
+    //Metodo Atualiza RP
     public void AtualizarRp(String lc) {
 
         txt_rp.setText(lc);
 
     }
 
-//Metodo Atualiza Faca
+    //Metodo Atualiza Faca
     public void AtualizarFaca(String lc) {
 
         txt_faca.setText(lc);
 
     }
 
-//Metodo Atualiza FT
+    //Metodo Atualiza FT
     public void AtualizarFt(String lc) {
 
         txt_ft.setText(lc);
 
     }
 
-//Metodo Atualiza Cliente
+    //Metodo Atualiza Cliente
     public void AtualizarCliente(String lc) {
 
         cb_cliente.setSelectedItem(lc);
 
     }
 
-//Metodo Atualiza TipoCliche
+    //Metodo Atualiza TipoCliche
     public void AtualizarTipoCliche(String lc) {
 
         cb_tipocliche.setSelectedItem(lc);
 
     }
 
-//Metodo Atualiza Destino
+    //Metodo Atualiza Destino
     public void AtualizarDestino(String lc) {
 
         cb_destino.setSelectedItem(lc);
 
     }
 
-//Metodo Atualiza Status
+    //Metodo Atualiza Status
     public void AtualizarStatus(String lc) {
 
         cb_status.setSelectedItem(lc);
 
     }
 
-//Metodo Atualiza data
+    //Metodo Atualiza data
     public void AtualizarData(String lc) {
 
         txt_data.setText(lc);
