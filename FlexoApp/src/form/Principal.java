@@ -280,6 +280,7 @@ public class Principal extends javax.swing.JFrame {
             gc.setLocationRelativeTo(this);
             gc.setVisible(true);
         }
+        gc.setLocationRelativeTo(this);
         gc.setVisible(true);
 
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -291,6 +292,7 @@ public class Principal extends javax.swing.JFrame {
             gtc.setLocationRelativeTo(this);
             gtc.setVisible(true);
         }
+        gtc.setLocationRelativeTo(this);
         gtc.setVisible(true);
 
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -302,6 +304,7 @@ public class Principal extends javax.swing.JFrame {
             gdc.setLocationRelativeTo(this);
             gdc.setVisible(true);
         }
+        gdc.setLocationRelativeTo(this);
         gdc.setVisible(true);
 
 

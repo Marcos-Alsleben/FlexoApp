@@ -486,8 +486,8 @@ public class ProdutoClicheDAO {
                     + "FROM TrabalhoProdutoCliche AS tpc\n"
                     + "JOIN ProdutoCliche AS pc ON tpc.ProdutoCliche_id = pc.id\n"
                     + "JOIN DestinoCliche AS dc ON pc.DestinoCliche_id = dc.id\n"
-                    + "WHERE tpc.condicao_uso = 'novo' \n"
-                    + "  AND YEAR(tpc.trabalho_criado) = ? \n"
+                    + "WHERE tpc.condicao_uso = 'novo'\n"
+                    + "  AND YEAR(tpc.trabalho_criado) = ?\n"
                     + "  AND MONTH(tpc.trabalho_criado) LIKE ?\n"
                     + "  AND dc.nome LIKE ?";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -531,7 +531,7 @@ public class ProdutoClicheDAO {
                     + "        flexo.DestinoCliche dc ON p.DestinoCliche_id = dc.id\n"
                     + "    WHERE \n"
                     + "        dc.nome LIKE ? AND\n"
-                    + "        tc.nome LIKE ? AND\n"     
+                    + "        tc.nome LIKE ? AND\n"
                     + "        p.status LIKE '%ATIVO%'\n"
                     + "    GROUP BY \n"
                     + "        p.id\n"

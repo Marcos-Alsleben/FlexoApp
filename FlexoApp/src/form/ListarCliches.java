@@ -229,6 +229,7 @@ public class ListarCliches extends javax.swing.JPanel {
             nc.AtualizarcbDestino();
 
         }
+        nc.setLocationRelativeTo(this);
         nc.setVisible(true);
         nc.setTextField();
         nc.AtualizarcbClientes();

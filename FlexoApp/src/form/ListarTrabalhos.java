@@ -208,6 +208,7 @@ public class ListarTrabalhos extends javax.swing.JPanel {
             nt.PesquisarProdutoCliche();
 
         }
+        nt.setLocationRelativeTo(this);
         nt.setVisible(true);
         nt.setTextField();
         nt.PesquisarProdutoCliche();
